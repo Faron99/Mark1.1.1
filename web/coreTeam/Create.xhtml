@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoreTeamCreateDlg" widgetVar="CoreTeamCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoreTeamTitle}">
+            <h:form id="CoreTeamCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coreTeamController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_coreTeamPK_idCoreTeam}" for="coreTeamPK_idCoreTeam" />
+                        <p:inputText id="coreTeamPK_idCoreTeam" value="#{coreTeamController.selected.coreTeamPK.idCoreTeam}" title="#{bundle.CreateCoreTeamTitle_coreTeamPK_idCoreTeam}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_coreTeamPK_idCoreTeam}"/>
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{coreTeamController.selected.name}" title="#{bundle.CreateCoreTeamTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_charge}" for="charge" />
+                        <p:inputText id="charge" value="#{coreTeamController.selected.charge}" title="#{bundle.CreateCoreTeamTitle_charge}" />
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_groupCoreTeam}" for="groupCoreTeam" />
+                        <p:selectOneMenu id="groupCoreTeam" value="#{coreTeamController.selected.groupCoreTeam}" required="true" requiredMessage="#{bundle.EditCoreTeamRequiredMessage_groupCoreTeam}">
+                            <f:selectItems value="#{groupCoreTeamController.itemsAvailableSelectOne}"
+                                           var="groupCoreTeamItem"
+                                           itemValue="#{groupCoreTeamItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coreTeamController.create}" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoreTeamCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

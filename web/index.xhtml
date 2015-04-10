@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"        
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Wiki Plantronics</title>
+        
+
+
+    </h:head>
+    <h:body>
+        <div id="top">
+            <ui:insert></ui:insert>
+            <h:form id="forma1">
+                <p:graphicImage  value="/imagenes/plntronics_logo3.jpg" style="height: 30px;width:320px;margin-bottom: -9px  "/> 
+                <p:inputText placeholder="User" value="#{indexBean.username}" style="margin-left: 485px;" /> 
+                <p:inputText placeholder="Password" value="#{indexBean.password}"  style="margin-left: 5px;" type="password" />            
+
+                <p:commandButton id="boto1" value="Login" icon="ui-icon-extlink"
+                                 action="#{indexBean.login()}"
+                                 update=":form1:Addp :form1:Addpm"
+                                 style="margin-left: 15px; " 
+                                 />
+
+            </h:form>           
+        </div>
+
+        <div id="left">
+            <h:form id="form1">
+
+                <p:menu id="pani" style="width: 200px ; border: none" >                        
+                    <p:submenu label="Menu" icon="ui-icon-document">
+                        <p:menuitem  action="index.xhtml" value="Home"/>
+                        <p:submenu  label="Create Reports (PDF)">
+                            <p:menuitem value="Create PM Report" />
+                            <p:menuitem value="Create Product Report"/>
+                        </p:submenu>                           
+                    </p:submenu>                   
+                    <p:submenu id="sub3" label="Edit" icon="ui-icon-pencil" transient="true" >
+                        <p:menuitem id="Addp" value="Add Product" url="/faces/wiki/List.xhtml" disabled="#{indexBean.selectedBoolean}" />
+                        <p:menuitem id="Addpm" value="Add PM" url="/faces/pm/List.xhtml" disabled="#{indexBean.selectedBoolean}" />                           
+                        <p:menuitem id="Addtac" value="Add TAC" url="/faces/tacs/List.xhtml" disabled="#{indexBean.selectedBoolean}" />                           
+
+                    </p:submenu>                    
+                    <p:submenu label="Help" icon="ui-icon-help">
+                        <p:menuitem value="Contents" url="#" />                          
+                        <p:menuitem value="File" url="#" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:menuitem value="Quit" url="http://www.plantronics.com/es/"  />
+                </p:menu>
+
+                <h3 style="margin-top:10px;text-align: center">Project Manager´s</h3>
+
+                <p:accordionPanel id="ProM" var="item" value="#{pmController.items}"  >
+                    <p:tab title="#{item.name}"  >
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage value="#{item.image}"/>
+                            <p:commandButton icon="ui-icon-search" update=":dialogoform:carDetail" 
+                                             oncomplete="PF('carDialog').show()">
+                                <f:setPropertyActionListener value="#{item}" target="#{pmController.itemsAvailableSelectOne}" />                  
+                            </p:commandButton>
+                            <!-- <h:outputText value="#{item}"/>    
+                            <p:commandLink update=":form1:carDetail" oncomplete="PF('carDialog').show()"  
+                                           title="View Detail" >                             
+                                <h:outputText styleClass="ui-icon ui-icon-person" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{item}" target="#{pmController.itemsAvailableSelectOne}" />
+                            </p:commandLink>
+                            -->
+                        </h:panelGrid>
+
+                    </p:tab>
+                </p:accordionPanel> 
+            </h:form>
+        </div>
+        <h:form id="dialogoform">
+            <p:dialog id="dialogo" header="PM Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail"  style="text-align:center;">
+                    <p:panelGrid  columns="2"  >
+                        <f:facet name="header">                                   
+                            <p:graphicImage  value="#{item.image}"/> 
+                            <h:outputText value="#{item.office}" />
+                            <h:outputText value="#{item.email}" />
+                            <h:outputText value="#{item.callWork}" />
+                        </f:facet>
+
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>              
+        </h:form>   
+
+
+
+        <div id="content" class="left_content">
+            <h:form>
+                <p:dataTable var="car" value="#{wikiController.items}" widgetVar="carsTable"
+                             emptyMessage="No records found with given criteria" paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" rows="10">
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Search Product" style="margin-left: -700px" />
+                            <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" 
+                                         style="width:150px;margin-left: 10px"
+                                         placeholder="Enter keyword"/>
+                        </p:outputPanel>
+                    </f:facet>
+                    <p:column style="width:0px" >
+                        <p:rowToggler />
+                    </p:column>          
+                    <p:column  sortBy="#{car.name}" filterBy="#{car.name}" style="width:150px" headerText="Product" >
+                        <h:outputText value="#{car.name}" />
+                    </p:column>
+                    <p:column  sortBy="#{car.model}" filterBy="#{car.model}" style="width:150px" headerText="Model"  >
+                        <h:outputText value="#{car.model}" />
+                    </p:column>
+                    <p:column  headerText="Wiki" style="width:0px;alignment-adjust: central" >
+                        <p:commandButton icon="ui-icon-search" action="/Wiki.xhtml"  style="text-align: center"/>                                                                       
+                    </p:column> 
+
+                    <p:rowExpansion>
+                        <p:panelGrid columns="2" style="width: 990px ">
+                            <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">                            
+                                <f:facet name="header">
+                                    <p:graphicImage value="imagenes/PLC#{car.model}i.jpg"/> 
+                                </f:facet>
+                                <h:outputText value="Tacs" />
+                                <h:link outcome="TAC.xhtml" value="TAC1235"/>
+                            </p:panelGrid>                        
+                            <h:form id="textform" style="width: 480px;text-align: justify">
+                                <h:outputText value="#{car.description}" style="margin-left: 0px;margin-right: 0px"/>
+                            </h:form>
+                        </p:panelGrid>
+                    </p:rowExpansion>
+                </p:dataTable>
+                <br/>
+                <h:outputLabel/>
+                <br/>
+                <h:outputLabel/>
+
+
+
+                <p:dataTable id="datat" var="car2" value="#{tacsController.items}" widgetVar="carsTable2"
+                             emptyMessage="No records found with given criteria" paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             rows="10" >
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Search TAC"  style="margin-left: -620px"/>
+                            <p:inputText id="globalFilter" onkeyup="PF('carsTable2').filter()" style="width:150px; margin-left: 10px" placeholder="Enter keyword"/>
+                            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                            <p:columnToggler datasource="datat" trigger="toggler" />
+                        </p:outputPanel>                         
+                    </f:facet>
+
+                    <p:column  sortBy="#{car2.tacsPK}" filterBy="#{car2.tacsPK}" headerText="TAC" >
+                        <h:link value="#{car2.tacsPK}" outcome="TAC.xhtml"/>
+                    </p:column>
+
+                    <p:column  sortBy="#{car2.description}" filterMatchMode="contains" filterBy="#{car2.description}" headerText="Description"  >
+                        <h:outputText value="#{car2.description}" />
+                    </p:column>
+                    <p:column   headerText="PM"  >
+                        <h:outputText value="----" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom"></ui:insert>
+
+
+            </div>
+
+        <br />
+        <h:link outcome="/wikiHasTacs/List" value="Show All WikiHasTacs Items"/>
+        <br />
+        <h:link outcome="/coreTeam/List" value="Show All CoreTeam Items"/>
+        <br />
+        <h:link outcome="/groupCoreTeam/List" value="Show All GroupCoreTeam Items"/>
+        <br />
+        <h:link outcome="/issue/List" value="Show All Issue Items"/>
+        <br />
+        <h:link outcome="/pm/List" value="Show All Pm Items"/>
+        <br />
+        <h:link outcome="/tacs/List" value="Show All Tacs Items"/>
+        <br />
+        <h:link outcome="/wiki/List" value="Show All Wiki Items"/>
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+

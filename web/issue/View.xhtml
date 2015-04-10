@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IssueViewDlg" widgetVar="IssueViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIssueTitle}">
+            <h:form id="IssueViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{issueController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIssueLabel_issuePK_idIssue}"/>
+                        <h:outputText value="#{issueController.selected.issuePK.idIssue}" title="#{bundle.ViewIssueTitle_issuePK_idIssue}"/>
+                        <h:outputText value="#{bundle.ViewIssueLabel_issue}"/>
+                        <h:outputText value="#{issueController.selected.issue}" title="#{bundle.ViewIssueTitle_issue}"/>
+                        <h:outputText value="#{bundle.ViewIssueLabel_description}"/>
+                        <h:outputText value="#{issueController.selected.description}" title="#{bundle.ViewIssueTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewIssueLabel_rootCause}"/>
+                        <h:outputText value="#{issueController.selected.rootCause}" title="#{bundle.ViewIssueTitle_rootCause}"/>
+                        <h:outputText value="#{bundle.ViewIssueLabel_recommend}"/>
+                        <h:outputText value="#{issueController.selected.recommend}" title="#{bundle.ViewIssueTitle_recommend}"/>
+                        <h:outputText value="#{bundle.ViewIssueLabel_groupCoreTeam}"/>
+                        <h:outputText value="#{issueController.selected.groupCoreTeam}" title="#{bundle.ViewIssueTitle_groupCoreTeam}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="IssueViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoreTeamViewDlg" widgetVar="CoreTeamViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCoreTeamTitle}">
+            <h:form id="CoreTeamViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coreTeamController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCoreTeamLabel_coreTeamPK_idCoreTeam}"/>
+                        <h:outputText value="#{coreTeamController.selected.coreTeamPK.idCoreTeam}" title="#{bundle.ViewCoreTeamTitle_coreTeamPK_idCoreTeam}"/>
+                        <h:outputText value="#{bundle.ViewCoreTeamLabel_name}"/>
+                        <h:outputText value="#{coreTeamController.selected.name}" title="#{bundle.ViewCoreTeamTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewCoreTeamLabel_charge}"/>
+                        <h:outputText value="#{coreTeamController.selected.charge}" title="#{bundle.ViewCoreTeamTitle_charge}"/>
+                        <h:outputText value="#{bundle.ViewCoreTeamLabel_groupCoreTeam}"/>
+                        <h:outputText value="#{coreTeamController.selected.groupCoreTeam}" title="#{bundle.ViewCoreTeamTitle_groupCoreTeam}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CoreTeamViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

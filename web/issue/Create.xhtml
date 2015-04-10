@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IssueCreateDlg" widgetVar="IssueCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateIssueTitle}">
+            <h:form id="IssueCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{issueController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_issuePK_idIssue}" for="issuePK_idIssue" />
+                        <p:inputText id="issuePK_idIssue" value="#{issueController.selected.issuePK.idIssue}" title="#{bundle.CreateIssueTitle_issuePK_idIssue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_issuePK_idIssue}"/>
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_issue}" for="issue" />
+                        <p:inputText id="issue" value="#{issueController.selected.issue}" title="#{bundle.CreateIssueTitle_issue}" />
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{issueController.selected.description}" title="#{bundle.CreateIssueTitle_description}" />
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_rootCause}" for="rootCause" />
+                        <p:inputText id="rootCause" value="#{issueController.selected.rootCause}" title="#{bundle.CreateIssueTitle_rootCause}" />
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_recommend}" for="recommend" />
+                        <p:inputText id="recommend" value="#{issueController.selected.recommend}" title="#{bundle.CreateIssueTitle_recommend}" />
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_groupCoreTeam}" for="groupCoreTeam" />
+                        <p:selectOneMenu id="groupCoreTeam" value="#{issueController.selected.groupCoreTeam}" required="true" requiredMessage="#{bundle.EditIssueRequiredMessage_groupCoreTeam}">
+                            <f:selectItems value="#{groupCoreTeamController.itemsAvailableSelectOne}"
+                                           var="groupCoreTeamItem"
+                                           itemValue="#{groupCoreTeamItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{issueController.create}" value="#{bundle.Save}" update="display,:IssueListForm:datalist,:growl" oncomplete="handleSubmit(args,'IssueCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IssueCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
