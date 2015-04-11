@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateIssueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_idissue}" for="idissue" />
+                    <h:inputText id="idissue" value="#{issueController.selected.idissue}" title="#{bundle.CreateIssueTitle_idissue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_idissue}"/>
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_issue}" for="issue" />
+                    <h:inputText id="issue" value="#{issueController.selected.issue}" title="#{bundle.CreateIssueTitle_issue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_issue}"/>
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_rootCause}" for="rootCause" />
+                    <h:inputText id="rootCause" value="#{issueController.selected.rootCause}" title="#{bundle.CreateIssueTitle_rootCause}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_rootCause}"/>
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_recommend}" for="recommend" />
+                    <h:inputText id="recommend" value="#{issueController.selected.recommend}" title="#{bundle.CreateIssueTitle_recommend}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_recommend}"/>
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{issueController.selected.description}" title="#{bundle.CreateIssueTitle_description}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.CreateIssueLabel_TACidtac}" for="TACidtac" />
+                    <h:selectOneMenu id="TACidtac" value="#{issueController.selected.TACidtac}" title="#{bundle.CreateIssueTitle_TACidtac}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_TACidtac}">
+                        <f:selectItems value="#{tacController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{issueController.create}" value="#{bundle.CreateIssueSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{issueController.prepareList}" value="#{bundle.CreateIssueShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateIssueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCoreTeamTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCoreTeamLabel_idcoreTeam}" for="idcoreTeam" />
+                    <h:inputText id="idcoreTeam" value="#{coreTeamController.selected.idcoreTeam}" title="#{bundle.CreateCoreTeamTitle_idcoreTeam}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_idcoreTeam}"/>
+                    <h:outputLabel value="#{bundle.CreateCoreTeamLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{coreTeamController.selected.name}" title="#{bundle.CreateCoreTeamTitle_name}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateCoreTeamLabel_charge}" for="charge" />
+                    <h:inputText id="charge" value="#{coreTeamController.selected.charge}" title="#{bundle.CreateCoreTeamTitle_charge}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_charge}"/>
+                    <h:outputLabel value="#{bundle.CreateCoreTeamLabel_TACidtac}" for="TACidtac" />
+                    <h:selectOneMenu id="TACidtac" value="#{coreTeamController.selected.TACidtac}" title="#{bundle.CreateCoreTeamTitle_TACidtac}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_TACidtac}">
+                        <f:selectItems value="#{tacController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{coreTeamController.create}" value="#{bundle.CreateCoreTeamSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{coreTeamController.prepareList}" value="#{bundle.CreateCoreTeamShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCoreTeamIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

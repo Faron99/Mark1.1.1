@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPmTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPmLabel_idpm}"/>
+                    <h:outputText value="#{pmController.selected.idpm}" title="#{bundle.ViewPmTitle_idpm}"/>
+                    <h:outputText value="#{bundle.ViewPmLabel_name}"/>
+                    <h:outputText value="#{pmController.selected.name}" title="#{bundle.ViewPmTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewPmLabel_office}"/>
+                    <h:outputText value="#{pmController.selected.office}" title="#{bundle.ViewPmTitle_office}"/>
+                    <h:outputText value="#{bundle.ViewPmLabel_workcall}"/>
+                    <h:outputText value="#{pmController.selected.workcall}" title="#{bundle.ViewPmTitle_workcall}"/>
+                    <h:outputText value="#{bundle.ViewPmLabel_email}"/>
+                    <h:outputText value="#{pmController.selected.email}" title="#{bundle.ViewPmTitle_email}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pmController.destroyAndView}" value="#{bundle.ViewPmDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPmEditLink}"/>
+                <br />
+                <h:commandLink action="#{pmController.prepareCreate}" value="#{bundle.ViewPmCreateLink}" />
+                <br />
+                <h:commandLink action="#{pmController.prepareList}" value="#{bundle.ViewPmShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPmIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+      <h:form id="foc">
+            <p:growl id="growl" showDetail="true" life="5000"/> 
+            <p:dataTable var="car" value="#{tacController.listaTac}" rowIndexVar="index">
+                
+     
+    <p:column headerText="Id " >
+        <h:outputText value="#{car.idtac}" />
+    </p:column>
+ 
+    <p:column headerText="Tac"  >
+        <h:commandLink value="#{car.name}" style="font-weight: bold"/>
+    </p:column>
+ 
+    <p:column headerText="desc" >
+        <h:outputText value="#{car.description}" />
+    </p:column>
+ 
+    <p:column headerText="Issues" >
+        <p:commandLink value="ver issues" actionListener="#{issueController.buscarIssues(car.idtac)}" update=":foc:carDetail" onclick="PF('carDialog').show();"  />
+    </p:column>
+   <p:column headerText="CT" >
+       <p:commandLink value="ver core teams" actionListener="#{coreTeamController.buscarCT(car.idtac)}" update=":foc:carDetail2" onclick="PF('carDialog2').show();" />
+    </p:column>
+     
+</p:dataTable> 
+    
+  <p:dialog id="dialog" header="Comprobacion" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+          ISSUES QUE TIENE.
+          <p:dataTable var="car" value="#{issueController.listIssue}">
+    <p:column headerText="Numero">
+        <h:outputText value="#{car.issue}" />
+    </p:column>
+ 
+    <p:column headerText="id">
+        <h:outputText value="#{car.idissue}" />
+    </p:column>
+ 
+    <p:column headerText="causa">
+        <h:outputText value="#{car.rootCause}" />
+    </p:column>
+ 
+    <p:column headerText="desc">
+        <h:outputText value="#{car.description}" />
+    </p:column>
+</p:dataTable>
+            <p:commandButton value="cerrar" onclick="PF('carDialog').close();" update=":foc"/>
+        </p:outputPanel>
+    </p:dialog>           
+            
+       
+     <p:dialog id="dialog2" header="Comprobacion" widgetVar="carDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail2" style="text-align:center;">
+          CORE TEAMS
+          <p:dataTable var="car" value="#{coreTeamController.listCT}">
+    <p:column headerText="Id">
+        <h:outputText value="#{car.idcoreTeam}" />
+    </p:column>
+ 
+    <p:column headerText="cargo">
+        <h:outputText value="#{car.charge}" />
+    </p:column>
+ 
+    <p:column headerText="nombre">
+        <h:outputText value="#{car.name}" />
+    </p:column>
+ 
+    
+</p:dataTable>
+            <p:commandButton value="salir"  onclick="PF('carDialog2').close();" update=":foc"/>
+        </p:outputPanel>
+    </p:dialog>        
+            
+            
+            
+        </h:form>
+    </h:body>
+</html>
+

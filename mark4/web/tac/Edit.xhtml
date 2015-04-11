@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTacTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTacLabel_idtac}" for="idtac" />
+                    <h:inputText id="idtac" value="#{tacController.selected.idtac}" title="#{bundle.EditTacTitle_idtac}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_idtac}"/>
+                    <h:outputLabel value="#{bundle.EditTacLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{tacController.selected.name}" title="#{bundle.EditTacTitle_name}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditTacLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{tacController.selected.description}" title="#{bundle.EditTacTitle_description}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.EditTacLabel_PMidpm}" for="PMidpm" />
+                    <h:selectOneMenu id="PMidpm" value="#{tacController.selected.PMidpm}" title="#{bundle.EditTacTitle_PMidpm}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_PMidpm}">
+                        <f:selectItems value="#{pmController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tacController.update}" value="#{bundle.EditTacSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTacViewLink}"/>
+                <br />
+                <h:commandLink action="#{tacController.prepareList}" value="#{bundle.EditTacShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTacIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
