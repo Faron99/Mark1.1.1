@@ -245,7 +245,8 @@ public class TacController implements Serializable {
         }
 
     }
- public void buscarTacs(int idpm){
+ 
+    public void buscarTacs(int idpm){
     
 listaTac=ejbFacade.listaTacsdePM(idpm);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
    

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   </h:head>
+    
+    <h:body>
+        <ui:composition template="Wiki_template.xhtml" >
+            <ui:define name="content">
+                <div id="content" class="left_content">
+                     <h:form>
+                         <p:fieldset legend="#{pwikiController.selected.model}" style="width: 800px; text-align: justify"   >
+                             <h:outputText value="#{pwikiController.selected.description}"/>
+                          </p:fieldset>                       
+                          <p:fieldset legend="Relation TACS" style="width: 800px" >
+                              <h:link outcome="TAC.xhtml" value="TAC1235"/>                           
+                          </p:fieldset>
+                     </h:form> 
+                </div>
+            </ui:define>          
+            
+            <ui:define name="right">
+                <div id="right"> 
+                    <h:form style="margin-top: -220px">
+                           <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <p:graphicImage value="#{pwikiController.selected.image}" style="width: 200px;height: 200px" />
+                            </f:facet>
+
+                            <h:outputText value="Codigo:" />
+                            <h:outputText value="#{pwikiController.selected.model}" />
+
+                            <h:outputText value="Dispositivo:" />
+                            <h:outputText value="#{pwikiController.selected.dips}" />
+
+                            <h:outputText value="Tecnología:" />
+                            <h:outputText value="#{pwikiController.selected.tec}" />
+
+                            <h:outputText value="Entorno:" />
+                            <h:outputText value="#{pwikiController.selected.entorno}" />
+                        </p:panelGrid>
+                    </h:form>   
+                </div>           
+            </ui:define>       
+        </ui:composition>
+    </h:body>
+</html>
+

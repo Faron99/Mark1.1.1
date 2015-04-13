@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WikiHasIssueViewDlg" widgetVar="WikiHasIssueViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWikiHasIssueTitle}">
+            <h:form id="WikiHasIssueViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wikiHasIssueController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWikiHasIssueLabel_demas}"/>
+                        <h:outputText value="#{wikiHasIssueController.selected.demas}" title="#{bundle.ViewWikiHasIssueTitle_demas}"/>
+                        <h:outputText value="#{bundle.ViewWikiHasIssueLabel_wiki}"/>
+                        <h:outputText value="#{wikiHasIssueController.selected.wiki}" title="#{bundle.ViewWikiHasIssueTitle_wiki}"/>
+                        <h:outputText value="#{bundle.ViewWikiHasIssueLabel_tac}"/>
+                        <h:outputText value="#{wikiHasIssueController.selected.tac}" title="#{bundle.ViewWikiHasIssueTitle_tac}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WikiHasIssueViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

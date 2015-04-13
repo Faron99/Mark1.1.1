@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Edit Wiki #{wikiController.selected.idWiki}</title>
+       
+    </h:head>
+    
+    <h:body>
+        <ui:composition template="/Wiki_template.xhtml" >
+            <ui:define name="content">
+              <div id="content" class="left_content">
+                <h:form>
+                    <p:growl id="msgs" showDetail="true" />
+                    <p:editor id="editor" widgetVar="editorWidget" value="#{pwikiController.selected.description}" width="890" />
+                    <h:panelGrid columns="2" style="margin-top: 10px">
+                        <p:commandButton value="Update" update="msgs,editor,growl,growl1" actionListener="#{pwikiController.update()}" 
+                                         oncomplete="PF('dlg').show()" icon="ui-icon-disk" action="Wiki.xhtml"/>
+                        <p:commandButton value="Done" type="button"  icon="ui-icon-check"  action="faces/Wiki.xhtml"/>
+                    </h:panelGrid>
+
+                    <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+                        <h:outputText id="display" value="#{editorView.text}" escape="false" />
+                    </p:dialog>
+                    <p:growl id="growl1" widgetVar="dlg" showDetail="true" life="2000" />
+                    <p:growl id="growl"  showDetail="true" life="2000"/>            
+                </h:form>
+              </div>      
+            </ui:define>
+        </ui:composition>
+        
+    </h:body>
+
+
+
+
+
+</html>
+
+
+                 

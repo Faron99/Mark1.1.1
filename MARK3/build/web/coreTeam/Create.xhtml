@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoreTeamCreateDlg" widgetVar="CoreTeamCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoreTeamTitle}">
+            <h:form id="CoreTeamCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coreTeamController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_idcoreTeam}" for="idcoreTeam" />
+                        <p:inputText id="idcoreTeam" value="#{coreTeamController.selected.idcoreTeam}" title="#{bundle.CreateCoreTeamTitle_idcoreTeam}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_idcoreTeam}"/>
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{coreTeamController.selected.name}" title="#{bundle.CreateCoreTeamTitle_name}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_charge}" for="charge" />
+                        <p:inputText id="charge" value="#{coreTeamController.selected.charge}" title="#{bundle.CreateCoreTeamTitle_charge}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_charge}"/>
+                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_TACidtac}" for="TACidtac" />
+                        <p:selectOneMenu id="TACidtac" value="#{coreTeamController.selected.TACidtac}" required="true" requiredMessage="#{bundle.EditCoreTeamRequiredMessage_TACidtac}">
+                            <f:selectItems value="#{tacController.itemsAvailableSelectOne}"
+                                           var="TACidtacItem"
+                                           itemValue="#{TACidtacItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coreTeamController.create}" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoreTeamCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

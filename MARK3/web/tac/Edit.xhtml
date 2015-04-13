@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TacEditDlg" widgetVar="TacEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTacTitle}">
+            <h:form id="TacEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tacController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTacLabel_idtac}" for="idtac" />
+                        <p:inputText id="idtac" value="#{tacController.selected.idtac}" title="#{bundle.EditTacTitle_idtac}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_idtac}"/>
+                        <p:outputLabel value="#{bundle.EditTacLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{tacController.selected.name}" title="#{bundle.EditTacTitle_name}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditTacLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{tacController.selected.description}" title="#{bundle.EditTacTitle_description}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditTacLabel_PMidpm}" for="PMidpm" />
+                        <p:selectOneMenu id="PMidpm" value="#{tacController.selected.PMidpm}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_PMidpm}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pmController.itemsAvailableSelectOne}"
+                                           var="PMidpmItem"
+                                           itemValue="#{PMidpmItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tacController.update}" value="#{bundle.Save}" update="display,:TacListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TacEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TacEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

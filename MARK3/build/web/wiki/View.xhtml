@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WikiViewDlg" widgetVar="WikiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWikiTitle}">
+            <h:form id="WikiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wikiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWikiLabel_idWiki}"/>
+                        <h:outputText value="#{wikiController.selected.idWiki}" title="#{bundle.ViewWikiTitle_idWiki}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_name}"/>
+                        <h:outputText value="#{wikiController.selected.name}" title="#{bundle.ViewWikiTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_model}"/>
+                        <h:outputText value="#{wikiController.selected.model}" title="#{bundle.ViewWikiTitle_model}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_description}"/>
+                        <h:outputText value="#{wikiController.selected.description}" title="#{bundle.ViewWikiTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_image}"/>
+                        <h:outputText value="#{wikiController.selected.image}" title="#{bundle.ViewWikiTitle_image}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_disp}"/>
+                        <h:outputText value="#{wikiController.selected.disp}" title="#{bundle.ViewWikiTitle_disp}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_tec}"/>
+                        <h:outputText value="#{wikiController.selected.tec}" title="#{bundle.ViewWikiTitle_tec}"/>
+                        <h:outputText value="#{bundle.ViewWikiLabel_ent}"/>
+                        <h:outputText value="#{wikiController.selected.ent}" title="#{bundle.ViewWikiTitle_ent}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WikiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WikiHasIssueEditDlg" widgetVar="WikiHasIssueEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWikiHasIssueTitle}">
+            <h:form id="WikiHasIssueEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wikiHasIssueController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditWikiHasIssueLabel_demas}" for="demas" />
+                        <p:inputText id="demas" value="#{wikiHasIssueController.selected.demas}" title="#{bundle.EditWikiHasIssueTitle_demas}" />
+                        <p:outputLabel value="#{bundle.EditWikiHasIssueLabel_wiki}" for="wiki" />
+                        <p:selectOneMenu id="wiki" value="#{wikiHasIssueController.selected.wiki}" required="true" requiredMessage="#{bundle.EditWikiHasIssueRequiredMessage_wiki}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{wikiController.itemsAvailableSelectOne}"
+                                           var="wikiItem"
+                                           itemValue="#{wikiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditWikiHasIssueLabel_tac}" for="tac" />
+                        <p:selectOneMenu id="tac" value="#{wikiHasIssueController.selected.tac}" required="true" requiredMessage="#{bundle.EditWikiHasIssueRequiredMessage_tac}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tacController.itemsAvailableSelectOne}"
+                                           var="tacItem"
+                                           itemValue="#{tacItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wikiHasIssueController.update}" value="#{bundle.Save}" update="display,:WikiHasIssueListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WikiHasIssueEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WikiHasIssueEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
