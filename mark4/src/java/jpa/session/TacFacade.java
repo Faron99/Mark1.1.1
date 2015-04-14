@@ -30,8 +30,11 @@ public class TacFacade extends AbstractFacade<Tac> {
     public TacFacade() {
         super(Tac.class);
     }
-public List<Tac> listaTacsdePM(int idpm){
+
+    
+    public List<Tac> listaTacsdePM(int idpm){
     List<Tac> lista = null;
+    
 try {
 Query query=em.createQuery("SELECT t from Tac t WHERE t.pMidpm.idpm=:id");
 query.setParameter("id", idpm);

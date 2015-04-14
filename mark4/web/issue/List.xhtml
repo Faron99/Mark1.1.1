@@ -20,12 +20,7 @@
                     <h:commandLink action="#{issueController.previous}" value="#{bundle.Previous} #{issueController.pagination.pageSize}" rendered="#{issueController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{issueController.next}" value="#{bundle.Next} #{issueController.pagination.pageSize}" rendered="#{issueController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{issueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIssueTitle_idissue}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idissue}"/>
-                        </h:column>
+                       
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIssueTitle_issue}"/>

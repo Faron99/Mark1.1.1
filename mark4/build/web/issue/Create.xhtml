@@ -15,8 +15,6 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateIssueLabel_idissue}" for="idissue" />
-                    <h:inputText id="idissue" value="#{issueController.selected.idissue}" title="#{bundle.CreateIssueTitle_idissue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_idissue}"/>
                     <h:outputLabel value="#{bundle.CreateIssueLabel_issue}" for="issue" />
                     <h:inputText id="issue" value="#{issueController.selected.issue}" title="#{bundle.CreateIssueTitle_issue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_issue}"/>
                     <h:outputLabel value="#{bundle.CreateIssueLabel_rootCause}" for="rootCause" />
