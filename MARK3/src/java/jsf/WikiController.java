@@ -27,7 +27,31 @@ public class WikiController implements Serializable {
     private jpa.session.WikiFacade ejbFacade;
     private List<Wiki> items = null;
     private Wiki selected;
+    List<Wiki> listaWiki;
+    String datowiki;
 
+    public String getDatowiki() {
+        return datowiki;
+    }
+
+    public void setDatowiki(String datowiki) {
+        this.datowiki = datowiki;
+    }
+   
+
+    
+    
+
+    public List<Wiki> getListaWiki() {
+        return listaWiki;
+    }
+
+    public void setListaWiki(List<Wiki> listaWiki) {
+        this.listaWiki = listaWiki;
+    }
+    
+    
+    
     public WikiController() {
     }
 
@@ -162,4 +186,20 @@ public class WikiController implements Serializable {
 
     }
 
+    
+    public void buscarWiki(int idWiki){
+    
+    listaWiki=ejbFacade.listaDescripion(idWiki);
+        System.out.println("Id seleccionado: " +idWiki);
+    
+    }
+    
+     public void buscarWiki2(int idWiki){
+    
+    datowiki=ejbFacade.Descripion(idWiki);
+        System.out.println("Id seleccionado: " +idWiki);
+    
+    }
+    
+   
 }

@@ -5,10 +5,13 @@
  */
 package jpa.session;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import jpa.entities.Issue;
+import jpa.entities.Tac;
 
 /**
  *
@@ -27,5 +30,25 @@ public class IssueFacade extends AbstractFacade<Issue> {
     public IssueFacade() {
         super(Issue.class);
     }
+    public List<Issue> listaissues(int idpm){
+    List<Issue> lista = null;
     
+try {
+    //Query query=em.createQuery("SELECT t from Tac t WHERE t.pMidpm.idpm=:id");
+//Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+//Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");   
+Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+query.setParameter("id", idpm);
+lista=query.getResultList();
+System.out.println("ISSUE: "+lista);
+
+
+}
+catch(Exception e){
+    System.out.println(e);
+}
+return lista;
+
+
+}    
 }

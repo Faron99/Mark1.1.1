@@ -14,15 +14,15 @@
                 <div id="content" class="left_content">         
                     <h:form id="TacListForm">
                         <p:fieldset id="fieldset" legend="TAC1235">  <!-- TAC Num -->     
-                            <p:dataTable id="datalist" value="#{issueController.items}" var="item" >                        
+                            <p:dataTable id="datalist" value="#{issueController.listaissue}" var="item" >                        
                               
- 
+  
                                
                                <p:column style="width: 30px; alignment-adjust: central" >
                                     <f:facet name="header" >
                                         <h:outputText value="Issue"/>
                                     </f:facet>
-                                   <h:outputText value="#{item.issue}"/>
+                                   <h:outputText value="#{item.issue }"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
@@ -53,7 +53,7 @@
                 <div id="right">                 
                     <h:form style="margin-top: -515px">
                         <p:fieldset id="fielset2" legend="Core Team Members"  style="margin:auto; text-align: center">
-                            <p:dataTable id="corteteam" value="#{coreTeamController.items}" var="items">
+                            <p:dataTable id="corteteam" value="#{coreTeamController.listact}" var="items">
                                 <p:column headerText="Charge">                     
                                     <h:outputText value="#{items.charge}" />
                                 </p:column>

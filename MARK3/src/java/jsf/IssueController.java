@@ -18,6 +18,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import jpa.entities.CoreTeam;
+
 
 @Named("issueController")
 @SessionScoped
@@ -25,8 +27,29 @@ public class IssueController implements Serializable {
 
     @EJB
     private jpa.session.IssueFacade ejbFacade;
+    private jpa.session.CoreTeamFacade ejbFacadect;
     private List<Issue> items = null;
     private Issue selected;
+    
+    List<Issue> listaissue;
+    List<CoreTeam> listact;
+
+    public List<CoreTeam> getListact() {
+        return listact;
+    }
+
+    public void setListact(List<CoreTeam> listact) {
+        this.listact = listact;
+    }
+
+    public List<Issue> getListaissue() {
+      
+        return listaissue;
+    }
+
+    public void setListaissue(List<Issue> listaTac) {
+        this.listaissue = listaTac;
+    }
 
     public IssueController() {
     }
@@ -161,5 +184,11 @@ public class IssueController implements Serializable {
         }
 
     }
+public void buscarTacs(int idTAC){
+    
+listaissue=ejbFacade.listaissues(idTAC);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
+//listact=ejbFacadect.listact(idTAC);
+System.out.println("Id tac: "+ idTAC);
 
+}
 }

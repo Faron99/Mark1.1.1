@@ -28,6 +28,8 @@ public class TacController implements Serializable {
     private List<Tac> items = null;
     private Tac selected;
 
+    
+    
     public TacController() {
     }
 
@@ -162,4 +164,6 @@ public class TacController implements Serializable {
 
     }
 
+    
+  
 }

@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="CoreTeamListForm">
-                <p:panel header="#{bundle.ListCoreTeamTitle}">
+                <p:panel >
                     <p:dataTable id="datalist" value="#{coreTeamController.items}" var="item"
                                  selectionMode="single" selection="#{coreTeamController.selected}"
                                  paginator="true"
@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCoreTeamTitle_idcoreTeam}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idcoreTeam}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCoreTeamTitle_name}"/>

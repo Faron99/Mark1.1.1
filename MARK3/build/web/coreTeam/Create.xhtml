@@ -12,8 +12,6 @@
             <h:form id="CoreTeamCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{coreTeamController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCoreTeamLabel_idcoreTeam}" for="idcoreTeam" />
-                        <p:inputText id="idcoreTeam" value="#{coreTeamController.selected.idcoreTeam}" title="#{bundle.CreateCoreTeamTitle_idcoreTeam}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_idcoreTeam}"/>
                         <p:outputLabel value="#{bundle.CreateCoreTeamLabel_name}" for="name" />
                         <p:inputText id="name" value="#{coreTeamController.selected.name}" title="#{bundle.CreateCoreTeamTitle_name}" required="true" requiredMessage="#{bundle.CreateCoreTeamRequiredMessage_name}"/>
                         <p:outputLabel value="#{bundle.CreateCoreTeamLabel_charge}" for="charge" />
@@ -25,7 +23,7 @@
                                            itemValue="#{TACidtacItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{coreTeamController.create}" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
+                    <p:commandButton actionListener="#{coreTeamController.create}" onclick="CoreTeamCreateDialog.close()" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CoreTeamCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

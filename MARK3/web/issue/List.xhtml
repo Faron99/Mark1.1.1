@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="IssueListForm">
-                <p:panel header="#{bundle.ListIssueTitle}">
+                <p:panel >
                     <p:dataTable id="datalist" value="#{issueController.items}" var="item"
                                  selectionMode="single" selection="#{issueController.selected}"
                                  paginator="true"
@@ -27,17 +27,18 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIssueTitle_idissue}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idissue}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIssueTitle_issue}"/>
                             </f:facet>
                             <h:outputText value="#{item.issue}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIssueTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -51,12 +52,7 @@
                             </f:facet>
                             <h:outputText value="#{item.recommend}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIssueTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIssueTitle_TACidtac}"/>

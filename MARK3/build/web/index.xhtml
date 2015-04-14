@@ -108,7 +108,7 @@
                                          style="width:150px;margin-left: 10px"
                                          placeholder="Enter keyword"/>
                         </p:outputPanel>
-                    </f:facet>
+                    </f:facet> 
                     <p:column style="width:0px" >
                         <p:rowToggler />
                     </p:column>          
@@ -119,7 +119,7 @@
                         <h:outputText value="#{car.model}" />
                     </p:column>
                     <p:column  headerText="Wiki" style="width:0px;alignment-adjust: central" >
-                        <p:commandButton icon="ui-icon-search" action="/Wiki.xhtml"  style="text-align: center"/>                                                                       
+                        <p:commandButton icon="ui-icon-search" actionListener="#{wikiController.buscarWiki(car.idWiki)}" action="/Wiki.xhtml"  style="text-align: center"/>                                                                       
                     </p:column> 
 
                     <p:rowExpansion>
@@ -160,7 +160,7 @@
                     </f:facet>
 
                     <p:column  sortBy="#{car2.name}" filterBy="#{car2.name}" headerText="TAC" >
-                        <h:link value="#{car2.name}" outcome="TAC.xhtml"/>
+                        <p:commandLink value="#{car2.name}" action="TAC.xhtml" actionListener="#{issueController.buscarTacs(car2.idtac)}"/>
                     </p:column>
 
                     <p:column  sortBy="#{car2.description}" filterMatchMode="contains" filterBy="#{car2.description}" headerText="Description"  >

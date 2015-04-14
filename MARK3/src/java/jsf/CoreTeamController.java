@@ -28,6 +28,17 @@ public class CoreTeamController implements Serializable {
     private List<CoreTeam> items = null;
     private CoreTeam selected;
 
+    List<CoreTeam> listact;
+
+    public List<CoreTeam> getListact() {
+        return listact;
+    }
+
+    public void setListact(List<CoreTeam> listact) {
+        this.listact = listact;
+    }
+    
+    
     public CoreTeamController() {
     }
 
@@ -161,5 +172,8 @@ public class CoreTeamController implements Serializable {
         }
 
     }
-
+public void buscarct (int ct){
+listact=ejbFacade.listact(ct);
+    System.out.println("CT: "+ct);
+}
 }

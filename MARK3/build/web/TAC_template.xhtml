@@ -31,7 +31,7 @@
                         </p:submenu> 
                         <p:submenu label="Edit" icon="ui-icon-pencil" transient="true" >             
                             <p:menuitem value="Edit/Add Issue" url="/faces/issue/List.xhtml" /> 
-                            <p:menuitem value="Edit/Add Core Team" url="/faces/coreTeam/List.xhtml" /> 
+                            <p:menuitem value="Edit/Add Core Team" actionListener="#{coreTeamController.ctselected(issueController.listaissue)}" url="/faces/coreTeam/List.xhtml" /> 
                         </p:submenu>
                         <p:submenu label="Create Report (PDF)" icon="ui-icon-folder-open" transient="true" >             
                             <p:menuitem value="Lessons Learned report" >
