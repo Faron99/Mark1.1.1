@@ -18,6 +18,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import jpa.entities.Issue;
+import jpa.session.IssueFacade;
 
 @Named("coreTeamController")
 @SessionScoped
@@ -25,11 +27,52 @@ public class CoreTeamController implements Serializable {
 
     @EJB
     private jpa.session.CoreTeamFacade ejbFacade;
+    private jpa.session.IssueFacade ejbFacadeissue;
     private List<CoreTeam> items = null;
     private CoreTeam selected;
 
     List<CoreTeam> listact;
+    List<Issue> listaissue;
+      List<CoreTeam> listaaddct;
 
+    public List<CoreTeam> getListaaddct() {
+        return listaaddct;
+    }
+
+    public void setListaaddct(List<CoreTeam> listaaddct) {
+        this.listaaddct = listaaddct;
+    }
+      
+      
+    
+
+    public CoreTeamFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(CoreTeamFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public IssueFacade getEjbFacadeissue() {
+        return ejbFacadeissue;
+    }
+
+    public void setEjbFacadeissue(IssueFacade ejbFacadeissue) {
+        this.ejbFacadeissue = ejbFacadeissue;
+    }
+
+    public List<Issue> getListaissue() {
+        return listaissue;
+    }
+
+    public void setListaissue(List<Issue> listaissue) {
+        this.listaissue = listaissue;
+    }
+
+    
+    
+    
     public List<CoreTeam> getListact() {
         return listact;
     }
@@ -172,8 +215,21 @@ public class CoreTeamController implements Serializable {
         }
 
     }
-public void buscarct (int ct){
-listact=ejbFacade.listact(ct);
-    System.out.println("CT: "+ct);
+public void atrapa (int ct){
+listaCt(ct);
+
 }
+
+public void listaCt(int ct){
+listact=ejbFacade.listact(ct);
+System.out.println("CT: "+ct);
+}
+
+public void addct(int ct){
+listaaddct=ejbFacade.listact(ct);
+System.out.println("CT: "+ct);
+}
+
+
+
 }

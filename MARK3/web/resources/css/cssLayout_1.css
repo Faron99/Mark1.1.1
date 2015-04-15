@@ -1,12 +1,22 @@
 
+#content {
+
+    
+    padding: 5px;
+    width: 800px;   
+    
+}
 
 #right {
+   position: relative;
     float: right;
     
     padding: 5px;
     width: 200px;
-  
-  
+    margin-top:-60px;
+  margin-left: 520px;
+
+    
    
 }
 
@@ -49,6 +59,8 @@
     position: relative;
     background-color: #dddddd;
     padding: 5px;
+    margin-left: 220px;
+    margin-right: 220px;
 }
 
 .left_content {

@@ -14,7 +14,7 @@
                 <div id="content" class="left_content">         
                     <h:form id="TacListForm">
                         <p:fieldset id="fieldset" legend="TAC1235">  <!-- TAC Num -->     
-                            <p:dataTable id="datalist" value="#{issueController.listaissue}" var="item" >                        
+                            <p:dataTable id="datalist" value="#{issueController.listact}" var="item" >                        
                               
   
                                
@@ -51,7 +51,7 @@
             
             <ui:define name="right">
                 <div id="right">                 
-                    <h:form style="margin-top: -515px">
+                    <h:form style="margin-top:0px">
                         <p:fieldset id="fielset2" legend="Core Team Members"  style="margin:auto; text-align: center">
                             <p:dataTable id="corteteam" value="#{coreTeamController.listact}" var="items">
                                 <p:column headerText="Charge">                     

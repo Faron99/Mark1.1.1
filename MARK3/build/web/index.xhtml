@@ -160,14 +160,14 @@
                     </f:facet>
 
                     <p:column  sortBy="#{car2.name}" filterBy="#{car2.name}" headerText="TAC" >
-                        <p:commandLink value="#{car2.name}" action="TAC.xhtml" actionListener="#{issueController.buscarTacs(car2.idtac)}"/>
+                        <p:commandLink value="#{car2.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car2.idtac)}"/>
                     </p:column>
 
                     <p:column  sortBy="#{car2.description}" filterMatchMode="contains" filterBy="#{car2.description}" headerText="Description"  >
                         <h:outputText value="#{car2.description}" />
                     </p:column>
-                    <p:column   headerText="PM" sortBy="#{car2.PMidpm}" filterMatchMode="contains" filterBy="#{car2.PMidpm}" >
-                        <h:outputText value="#{car2.PMidpm}" />
+                    <p:column   headerText="PM" sortBy="#{car2.PMidpm.name}" filterMatchMode="contains" filterBy="#{car2.PMidpm.name}" >
+                        <h:outputText value="#{car2.PMidpm.name}" />
                     </p:column>
 
                 </p:dataTable>

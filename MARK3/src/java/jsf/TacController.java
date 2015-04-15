@@ -27,7 +27,28 @@ public class TacController implements Serializable {
     private jpa.session.TacFacade ejbFacade;
     private List<Tac> items = null;
     private Tac selected;
+    private Tac tacselected;
+    
 
+    List<Tac> listatac;
+
+    public List<Tac> getListatac() {
+        return listatac;
+    }
+
+    public void setListatac(List<Tac> listatac) {
+        this.listatac = listatac;
+    }
+
+    public Tac getTacselected() {
+        return tacselected;
+    }
+
+    public void setTacselected(Tac tacselected) {
+        this.tacselected = tacselected;
+    }
+    
+    
     
     
     public TacController() {
@@ -164,6 +185,11 @@ public class TacController implements Serializable {
 
     }
 
-    
+   public void getidtac (int idtac){
+listatac=ejbFacade.listaTAC(idtac);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
+tacselected=ejbFacade.tacselec(idtac);
+System.out.println("Id tac: "+ idtac);
+
+} 
   
 }

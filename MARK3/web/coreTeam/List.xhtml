@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="CoreTeamListForm">
                 <p:panel >
-                    <p:dataTable id="datalist" value="#{coreTeamController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{coreTeamController.listact}" var="item"
                                  selectionMode="single" selection="#{coreTeamController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idcoreTeam}"
@@ -40,12 +40,7 @@
                             </f:facet>
                             <h:outputText value="#{item.charge}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCoreTeamTitle_TACidtac}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.TACidtac}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{coreTeamController.prepareCreate}" update=":CoreTeamCreateForm" oncomplete="PF('CoreTeamCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CoreTeamViewForm" oncomplete="PF('CoreTeamViewDialog').show()" disabled="#{empty coreTeamController.selected}"/>

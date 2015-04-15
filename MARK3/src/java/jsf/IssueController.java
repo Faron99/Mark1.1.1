@@ -184,10 +184,10 @@ public class IssueController implements Serializable {
         }
 
     }
-public void buscarTacs(int idTAC){
+public void atrapaTAC(int idTAC){
     
 listaissue=ejbFacade.listaissues(idTAC);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
-//listact=ejbFacadect.listact(idTAC);
+listact=ejbFacadect.listact(idTAC);
 System.out.println("Id tac: "+ idTAC);
 
 }

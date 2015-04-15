@@ -1,0 +1,20 @@
+-cargar datos de producto en wiki//pendiente
+
+
+
+-agregar coreteam e issues del tac//listo
+
+-agregar reportes//listo
+
+-PM cosas//pendiente
+
+
+-llamar solo un dato, no una lista, para la descriopcion y demas de la wiki
+-2 metodos para cargar los issues y el coreteam
+-el metodo me llama 2 listas, pero solo carga una
+-el metodo llama una lista cargada con 2 tablas, como hacerlo?
+
+15/Abril
+-llamar 2 listas con un metodo
+-lado derecho se mueve con las cosas del centro
+-agregar ct que me aparesca el tactico por default

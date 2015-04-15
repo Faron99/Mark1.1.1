@@ -36,7 +36,28 @@ public class CoreTeamFacade extends AbstractFacade<CoreTeam> {
         
      try{
         // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
-        Query query=em.createQuery("SELECT t FROM CoreTeam t WHERE t.tACidtac.idtac=:ct");
+    
+         Query query=em.createQuery("SELECT t FROM CoreTeam t WHERE t.tACidtac.idtac=:ct");
+        query.setParameter("ct",ct);
+        lista=query.getResultList();
+         System.out.println("CoreTeam: "+lista);
+
+     } 
+     
+     catch(Exception e){
+         System.out.println(e);
+     }  
+        
+    return lista;
+    }
+    
+    public List<CoreTeam>listaaddct(int ct){
+    List<CoreTeam> lista = null;
+        
+     try{
+        // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+    
+         Query query=em.createQuery("SELECT t FROM CoreTeam t WHERE t.tACidtac.idtac=:ct");
         query.setParameter("ct",ct);
         lista=query.getResultList();
          System.out.println("CoreTeam: "+lista);
