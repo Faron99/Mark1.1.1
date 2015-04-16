@@ -20,10 +20,11 @@
                         <p:selectOneMenu id="PMidpm" value="#{tacController.selected.PMidpm}" required="true" requiredMessage="#{bundle.EditTacRequiredMessage_PMidpm}">
                             <f:selectItems value="#{pmController.itemsAvailableSelectOne}"
                                            var="PMidpmItem"
-                                           itemValue="#{PMidpmItem}"/>
+                                           itemValue="#{PMidpmItem}"
+                                           itemLabel="#{PMidpmItem.name}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tacController.create}" onclick="PmCreateDialog.close()" value="#{bundle.Save}" update="display,:TacListForm:datalist,:growl" oncomplete="handleSubmit(args,'TacCreateDialog');"/>
+                    <p:commandButton actionListener="#{tacController.create}" onclick="PmCreateDialog.hide()" value="#{bundle.Save}" update="display,:TacListForm:datalist,:growl" oncomplete="handleSubmit(args,'TacCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TacCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

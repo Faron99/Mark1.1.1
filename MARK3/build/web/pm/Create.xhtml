@@ -23,7 +23,7 @@
                         <p:outputLabel value="#{bundle.CreatePmLabel_image}" for="image" />
                         <p:inputText id="image" value="#{pmController.selected.image}" title="#{bundle.CreatePmTitle_image}" required="true" requiredMessage="#{bundle.CreatePmRequiredMessage_image}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pmController.create}" onclick="PmCreateDialog.close()" value="#{bundle.Save}" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args,'PmCreateDialog');"/>
+                    <p:commandButton actionListener="#{pmController.create}" onclick="PmCreateDialog.hide()" value="#{bundle.Save}" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args,'PmCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PmCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -52,12 +52,7 @@
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPmTitle_image}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.image}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pmController.prepareCreate}" update=":PmCreateForm" oncomplete="PF('PmCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PmViewForm" oncomplete="PF('PmViewDialog').show()" disabled="#{empty pmController.selected}"/>

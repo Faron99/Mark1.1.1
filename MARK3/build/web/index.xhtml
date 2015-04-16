@@ -40,8 +40,14 @@
                     <p:submenu label="Menu" icon="ui-icon-document">
                         <p:menuitem  action="index.xhtml" value="Home"/>
                         <p:submenu  label="Create Reports (PDF)">
-                            <p:menuitem value="Create PM Report" />
-                            <p:menuitem value="Create Product Report"/>
+                            
+                            <p:menuitem value="Create Product Report">
+                                 <h:commandLink>
+                                    <p:outputLabel value="Create Product Report" />   
+                                <p:dataExporter type="pdf" target=":formaproducto:dataproductos" 
+                                                fileName="Products"/>  
+                                </h:commandLink>    
+                            </p:menuitem>
                         </p:submenu>                           
                     </p:submenu>                   
                     <p:submenu id="sub3" label="Edit" icon="ui-icon-pencil" transient="true" >
@@ -65,9 +71,9 @@
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:graphicImage value="#{item.image}"/>
                             <p:commandButton icon="ui-icon-search" update=":dialogoform:carDetail" 
-                                             oncomplete="PF('carDialog').show()">
-                                <f:setPropertyActionListener value="#{item}" target="#{pmController.itemsAvailableSelectOne}" />                  
-                            </p:commandButton>
+                                             oncomplete="PF('carDialog').show()" actionListener="#{pmController.recibepm(item)}"/>
+                                                 
+                           
                            
                         </h:panelGrid>
 
@@ -80,12 +86,17 @@
                 <p:outputPanel id="carDetail"  style="text-align:center;">
                     <p:panelGrid  columns="2"  >
                         <f:facet name="header">                                   
-                            <p:graphicImage  value="#{item.image}"/> 
-                            <h:outputText value="#{item.office}" />
-                            <h:outputText value="#{item.email}" />
-                            <h:outputText value="#{item.workcall}" />
+                            <p:graphicImage  value="#{pmController.lpm.image}"/> 
+                            
                         </f:facet>
-
+                        <h:outputText value="Office" />
+                        <h:outputText value="#{pmController.lpm.office}" />
+                        <h:outputText value="Email" />
+                        <h:outputText value="#{pmController.lpm.email}@plantronics.com" />
+                        <h:outputText value="Office" />
+                        <h:outputText value="#{pmController.lpm.workcall}" />
+                        
+                        
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>              

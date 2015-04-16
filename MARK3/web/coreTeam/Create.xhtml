@@ -21,10 +21,11 @@
                         <p:selectOneMenu id="TACidtac" value="#{coreTeamController.selected.TACidtac}" required="true" requiredMessage="#{bundle.EditCoreTeamRequiredMessage_TACidtac}">
                             <f:selectItems value="#{tacController.itemsAvailableSelectOne}"
                                            var="TACidtacItem"
-                                           itemValue="#{TACidtacItem.name}"/>
+                                           itemValue="#{TACidtacItem}"
+                                           itemLabel="#{TACidtacItem.name}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{coreTeamController.create}" onclick="CoreTeamCreateDialog.close()" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
+                    <p:commandButton actionListener="#{coreTeamController.create}" onclick="CoreTeamCreateDialog.hide()" value="#{bundle.Save}" update="display,:CoreTeamListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoreTeamCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CoreTeamCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

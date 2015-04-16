@@ -1,9 +1,9 @@
 
 #content {
 
-    
+    position: absolute;
     padding: 5px;
-    width: 800px;   
+    width: 785px;   
     
 }
 
@@ -13,7 +13,7 @@
     
     padding: 5px;
     width: 200px;
-    margin-top:-60px;
+    margin-top:0px;
   margin-left: 520px;
 
     

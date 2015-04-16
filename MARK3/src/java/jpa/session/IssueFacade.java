@@ -30,6 +30,8 @@ public class IssueFacade extends AbstractFacade<Issue> {
     public IssueFacade() {
         super(Issue.class);
     }
+    
+    
     public List<Issue> listaissues(int idpm){
     List<Issue> lista = null;
     
@@ -37,7 +39,7 @@ try {
     //Query query=em.createQuery("SELECT t from Tac t WHERE t.pMidpm.idpm=:id");
 //Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
 //Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");   
-Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id ORDER BY t.issue");
 query.setParameter("id", idpm);
 lista=query.getResultList();
 System.out.println("ISSUE: "+lista);

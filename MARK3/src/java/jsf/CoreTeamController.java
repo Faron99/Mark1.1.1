@@ -25,23 +25,18 @@ import jpa.session.IssueFacade;
 @SessionScoped
 public class CoreTeamController implements Serializable {
 
-    @EJB
-    private jpa.session.CoreTeamFacade ejbFacade;
-    private jpa.session.IssueFacade ejbFacadeissue;
+   @EJB
+   jpa.session.CoreTeamFacade ejbFacade;
+    @EJB jpa.session.IssueFacade ejbFacadeissue;
+    
     private List<CoreTeam> items = null;
     private CoreTeam selected;
 
-    List<CoreTeam> listact;
-    List<Issue> listaissue;
-      List<CoreTeam> listaaddct;
+    private List<CoreTeam> listact;
+    private List<Issue> listaissue;
+    
 
-    public List<CoreTeam> getListaaddct() {
-        return listaaddct;
-    }
-
-    public void setListaaddct(List<CoreTeam> listaaddct) {
-        this.listaaddct = listaaddct;
-    }
+  
       
       
     
@@ -217,7 +212,7 @@ public class CoreTeamController implements Serializable {
     }
 public void atrapa (int ct){
 listaCt(ct);
-
+addct(ct);
 }
 
 public void listaCt(int ct){
@@ -226,8 +221,8 @@ System.out.println("CT: "+ct);
 }
 
 public void addct(int ct){
-listaaddct=ejbFacade.listact(ct);
-System.out.println("CT: "+ct);
+listaissue=ejbFacadeissue.listaissues(ct);
+System.out.println("issue: "+ct);
 }
 
 

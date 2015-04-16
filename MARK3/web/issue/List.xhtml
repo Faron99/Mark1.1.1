@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="IssueListForm">
                 <p:panel >
-                    <p:dataTable id="datalist" value="#{issueController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{coreTeamController.listaissue}" var="item"
                                  selectionMode="single" selection="#{issueController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idissue}"
@@ -53,12 +53,7 @@
                             <h:outputText value="#{item.recommend}"/>
                         </p:column>
                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIssueTitle_TACidtac}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.TACidtac}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{issueController.prepareCreate}" update=":IssueCreateForm" oncomplete="PF('IssueCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IssueViewForm" oncomplete="PF('IssueViewDialog').show()" disabled="#{empty issueController.selected}"/>

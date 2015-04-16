@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -48,17 +49,20 @@ public class Issue implements Serializable {
     private int issue;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Lob
+    @Size(min = 1, max = 2000)
     @Column(name = "root_cause")
     private String rootCause;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Lob
+    @Size(min = 1, max = 2000)
     @Column(name = "recommend")
     private String recommend;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Lob
+    @Size(min = 1, max = 2000)
     @Column(name = "description")
     private String description;
     @JoinColumn(name = "TAC_idtac", referencedColumnName = "idtac")

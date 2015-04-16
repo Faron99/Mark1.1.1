@@ -35,8 +35,12 @@
                         </p:submenu>
                         <p:submenu label="Create Report (PDF)" icon="ui-icon-folder-open" transient="true" >             
                             <p:menuitem value="Lessons Learned report" >
-                                 <p:dataExporter type="pdf" target=":TacListForm:datalist" 
-                                                fileName="Lessons Learned"/>                          
+                                <h:commandLink >
+                                 <p:outputLabel value="Lesson Learned report" />   
+                                <p:dataExporter type="pdf" target=":TacListForm:datalist" 
+                                                fileName="Lessons Learned"/>  
+                                </h:commandLink>
+                                                           
                             </p:menuitem>                      
                         </p:submenu>
                         <p:submenu label="Help" icon="ui-icon-help">

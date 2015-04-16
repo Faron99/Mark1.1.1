@@ -24,9 +24,44 @@ import javax.faces.convert.FacesConverter;
 public class PmController implements Serializable {
 
     @EJB
-    private jpa.session.PmFacade ejbFacade;
+    jpa.session.PmFacade ejbFacade;
     private List<Pm> items = null;
     private Pm selected;
+    private Pm lpm;
+
+    public Pm getLpm() {
+        return lpm;
+    }
+
+    public void setLpm(Pm lpm) {
+        this.lpm = lpm;
+    }
+    
+    
+    
+    private List<Pm> listapm;
+
+    public List<Pm> getListapm() {
+        return listapm;
+    }
+
+    public void setListapm(List<Pm> listapm) {
+        this.listapm = listapm;
+    }
+    
+    
+    public void recibepm(Pm pm){
+    lpm=pm;
+        System.out.println("pm: "+ pm);
+    
+    }
+    
+    public void recibepm(int pm){
+    listapm=ejbFacade.listapm(pm);
+        System.out.println("pm: "+ pm);
+    
+    }
+    
 
     public PmController() {
     }
