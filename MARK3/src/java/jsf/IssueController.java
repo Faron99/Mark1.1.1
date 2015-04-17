@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import jpa.entities.CoreTeam;
+import jpa.session.CoreTeamFacade;
 
 
 @Named("issueController")
@@ -26,14 +27,76 @@ import jpa.entities.CoreTeam;
 public class IssueController implements Serializable {
 
     @EJB
-    private jpa.session.IssueFacade ejbFacade;
-    private jpa.session.CoreTeamFacade ejbFacadect;
+     jpa.session.IssueFacade ejbFacade;
+     jpa.session.CoreTeamFacade ejbFacadect;
     private List<Issue> items = null;
     private Issue selected;
+    private Issue listi;
+    private List<Issue> listaissue;
+    private List<CoreTeam> listact;
+    private List<Issue> listaissuetabla;
+    private List<Issue> listafilter;
     
-    List<Issue> listaissue;
-    List<CoreTeam> listact;
+   
+    
+    public void atrapapm(int idTACtabla){
+    
+listaissuetabla=ejbFacade.listaissues(idTACtabla);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
 
+System.out.println("Id tac: "+ idTACtabla);
+
+}
+
+    public List<Issue> getListafilter() {
+        return listafilter;
+    }
+
+    public void setListafilter(List<Issue> listafilter) {
+        this.listafilter = listafilter;
+    }
+
+    public Issue getListi() {
+        return listi;
+    }
+
+    public void setListi(Issue listi) {
+        this.listi = listi;
+    }
+
+    
+    
+   
+
+    
+    
+    
+    public IssueFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(IssueFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public CoreTeamFacade getEjbFacadect() {
+        return ejbFacadect;
+    }
+
+    public void setEjbFacadect(CoreTeamFacade ejbFacadect) {
+        this.ejbFacadect = ejbFacadect;
+    }
+
+    public List<Issue> getListaissuetabla() {
+        return listaissuetabla;
+    }
+
+    public void setListaissuetabla(List<Issue> listaissuetabla) {
+        this.listaissuetabla = listaissuetabla;
+    }
+    
+    
+    
+    
     public List<CoreTeam> getListact() {
         return listact;
     }

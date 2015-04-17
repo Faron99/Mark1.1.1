@@ -53,4 +53,26 @@ return lista;
 
 
 }    
+    
+    public List<Issue> listafilter(){
+    List<Issue> lista = null;
+    
+try {
+    //Query query=em.createQuery("SELECT t from Tac t WHERE t.pMidpm.idpm=:id");
+//Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+//Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");   
+Query query=em.createQuery("SELECT t.description FROM Issue t");
+lista=query.getResultList();
+System.out.println("ISSUEfilterlist: "+lista);
+
+
+}
+catch(Exception e){
+    System.out.println(e);
+}
+return lista;
+
+
+}    
+    
 }

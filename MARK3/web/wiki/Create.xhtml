@@ -30,7 +30,7 @@
                         <p:outputLabel value="#{bundle.CreateWikiLabel_ent}" for="ent" />
                         <p:inputText id="ent" value="#{wikiController.selected.ent}" title="#{bundle.CreateWikiTitle_ent}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{wikiController.create}" value="#{bundle.Save}" update="display,:WikiListForm:datalist,:growl" oncomplete="handleSubmit(args,'WikiCreateDialog');"/>
+                    <p:commandButton actionListener="#{wikiController.create}" onclick="WikiCreateDialog.hide()" value="#{bundle.Save}" update="display,:WikiListForm:datalist,:growl" oncomplete="handleSubmit(args,'WikiCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="WikiCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

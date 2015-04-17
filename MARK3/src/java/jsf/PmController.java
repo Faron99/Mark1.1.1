@@ -56,11 +56,11 @@ public class PmController implements Serializable {
     
     }
     
-    public void recibepm(int pm){
+   /* public void recibepm(int pm){
     listapm=ejbFacade.listapm(pm);
         System.out.println("pm: "+ pm);
     
-    }
+    }*/
     
 
     public PmController() {

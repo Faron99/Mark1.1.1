@@ -24,14 +24,24 @@ import javax.faces.convert.FacesConverter;
 public class TacController implements Serializable {
 
     @EJB
-    private jpa.session.TacFacade ejbFacade;
+    jpa.session.TacFacade ejbFacade;
     private List<Tac> items = null;
     private Tac selected;
     private Tac tacselected;
+    private List<Tac> listafiltac;
+
+    private List<Tac> listatac;
+
     
+      public void gettac (int idtac){
+listatac=ejbFacade.listaTAC(idtac);//aqui llamo al metodo de la consulta y el valo que regresa se lo asigno a la lista
+tacselected=ejbFacade.tacselec(idtac);
+System.out.println("Id tac: "+ idtac);
 
-    List<Tac> listatac;
-
+} 
+    
+    
+    
     public List<Tac> getListatac() {
         return listatac;
     }

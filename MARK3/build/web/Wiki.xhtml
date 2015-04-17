@@ -14,8 +14,8 @@
             <ui:define name="content">
                 <div id="content" class="left_content">
                      <h:form>
-                         <p:fieldset legend="#{wikiController.selected}" style="width: 800px; text-align: justify"   >
-                             <h:outputText value="#{wikiController.listaWiki}"/>
+                         <p:fieldset legend="#{wikiController.bus.name}" style="width: 800px; text-align: justify"   >
+                             <h:outputText value="#{wikiController.bus.description}"/>
                           </p:fieldset>                       
                           <p:fieldset legend="Relation TACS" style="width: 800px" >
                               <h:link outcome="TAC.xhtml" value="TAC1235"/>                           
@@ -26,23 +26,25 @@
             
             <ui:define name="right">
                 <div id="right"> 
-                    <h:form style="margin-top: -220px">
+                    <h:form style="margin-top:0px">
                            <p:panelGrid columns="2">
                             <f:facet name="header">
-                                <p:graphicImage value="#{pwikiController.selected.image}" style="width: 200px;height: 200px" />
+                                <p:graphicImage value="/imagenes/#{wikiController.bus.image}.jpg" style="width: 200px;height: 200px" />
                             </f:facet>
+                            <h:outputText value="imagen:" />
+                            <h:outputText value="#{wikiController.bus.image}" />
 
                             <h:outputText value="Codigo:" />
-                            <h:outputText value="#{pwikiController.selected.model}" />
+                            <h:outputText value="#{wikiController.bus.model}" />
 
                             <h:outputText value="Dispositivo:" />
-                            <h:outputText value="#{pwikiController.selected.dips}" />
+                            <h:outputText value="#{wikiController.bus.disp}" />
 
                             <h:outputText value="Tecnología:" />
-                            <h:outputText value="#{pwikiController.selected.tec}" />
+                            <h:outputText value="#{wikiController.bus.tec}" />
 
                             <h:outputText value="Entorno:" />
-                            <h:outputText value="#{pwikiController.selected.entorno}" />
+                            <h:outputText value="#{wikiController.bus.ent}" />
                         </p:panelGrid>
                     </h:form>   
                 </div>           

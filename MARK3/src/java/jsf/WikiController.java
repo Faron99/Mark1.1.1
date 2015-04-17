@@ -24,11 +24,27 @@ import javax.faces.convert.FacesConverter;
 public class WikiController implements Serializable {
 
     @EJB
-    private jpa.session.WikiFacade ejbFacade;
+    jpa.session.WikiFacade ejbFacade;
     private List<Wiki> items = null;
     private Wiki selected;
     List<Wiki> listaWiki;
     String datowiki;
+    Wiki bus;
+
+     public void buscarWiki(Wiki w){
+    
+    bus=w;
+        System.out.println("w seleccionado: " +w);
+    
+    }
+    public Wiki getBus() {
+        return bus;
+    }
+
+    public void setBus(Wiki bus) {
+        this.bus = bus;
+    }
+    
 
     public String getDatowiki() {
         return datowiki;
@@ -187,12 +203,7 @@ public class WikiController implements Serializable {
     }
 
     
-    public void buscarWiki(int idWiki){
-    
-    listaWiki=ejbFacade.listaDescripion(idWiki);
-        System.out.println("Id seleccionado: " +idWiki);
-    
-    }
+   
     
      public void buscarWiki2(int idWiki){
     
