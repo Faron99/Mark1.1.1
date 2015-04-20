@@ -70,6 +70,47 @@ public class TacFacade extends AbstractFacade<Tac> {
         
     return selec;
     }  
+   
+    public Tac nametac(int tac){
+    Tac selec = null;
+        
+     try{
+        // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+    
+        Query query=em.createQuery("SELECT t.name FROM Tac t WHERE t.idtac=:id");
+        query.setParameter("id",tac);
+        selec=(Tac) query.getSingleResult();
+         System.out.println("Tac seleccionado2: "+selec);
+
+     } 
+     
+     catch(Exception e){
+         System.out.println(e);
+     }  
+        
+    return selec;
+    }  
+    
+    
+    public List<Tac> nametacpm(int tacpm){
+    List<Tac> selec = null;
+        
+     try{
+        // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+    
+        Query query=em.createQuery("SELECT t FROM Tac t WHERE t.pMidpm.idpm=:id");
+        query.setParameter("id",tacpm);
+        selec=query.getResultList();
+         System.out.println("Tac de pm seleccionado: "+selec);
+
+     } 
+     
+     catch(Exception e){
+         System.out.println(e);
+     }  
+        
+    return selec;
+    }  
     
     
 }

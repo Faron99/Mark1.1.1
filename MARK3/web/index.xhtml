@@ -20,7 +20,7 @@
         <div id="top">
             <ui:insert></ui:insert>
             <h:form id="forma1">
-                <p:graphicImage  value="/imagenes/plntronics_logo3.jpg" style="height: 30px;width:320px;margin-bottom: -9px  "/> 
+                <p:graphicImage  value="/imagenes/logos/plntronics_logo3.jpg" style="height: 30px;width:320px;margin-bottom: -9px  "/> 
                 <p:inputText placeholder="User" value="#{indexBean.username}" style="margin-left: 485px;" /> 
                 <p:inputText placeholder="Password" value="#{indexBean.password}"  style="margin-left: 5px;" type="password" />            
 
@@ -71,7 +71,9 @@
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:graphicImage value="#{item.image}"/>
                             <p:commandButton icon="ui-icon-search" update=":dialogoform:carDetailpm" 
-                                             oncomplete="PF('carDialogpm').show()" actionListener="#{pmController.recibepm(item)}"/>
+                                             oncomplete="PF('carDialogpm').show()" actionListener="#{pmController.recibepm(item)}">
+                               
+                            </p:commandButton>
                                                  
                            
                            
@@ -87,15 +89,20 @@
                     <p:panelGrid  columns="2"  >
                         <f:facet name="header">                                   
                             <p:graphicImage  value="#{pmController.lpm.image}"/> 
-                            
-                        </f:facet>
-                        <h:outputText value="Office" />
+                            <p:panelGrid  columns="2"  >
+                            <h:outputText value="Office" />
                         <h:outputText value="#{pmController.lpm.office}" />
                         <h:outputText value="Email" />
                         <h:outputText value="#{pmController.lpm.email}@plantronics.com" />
                         <h:outputText value="Office" />
                         <h:outputText value="#{pmController.lpm.workcall}" />
-                        
+                        </p:panelGrid>
+                        </f:facet>
+                      
+                        <p:dataList value="#{pmController.lpm.tacList}" var="cartac" >
+                      
+                            <p:commandLink  value="#{cartac.name}" action="TAC.xhtml" ></p:commandLink>
+                             </p:dataList>
                         
                     </p:panelGrid>
                 </p:outputPanel>
@@ -130,14 +137,14 @@
                         <h:outputText value="#{car.model}" />
                     </p:column>
                     <p:column  headerText="Wiki" style="width:0px;alignment-adjust: central" >
-                        <p:commandButton icon="ui-icon-search" actionListener="#{wikiController.buscarWiki(car)}" action="/Wiki.xhtml"  style="text-align: center"/>                                                                       
+                        <p:commandButton icon="ui-icon-search" actionListener="#{wikiController.buscarWiki(car)}"  action="/Wiki.xhtml"  style="text-align: center"/>                                                                       
                     </p:column> 
 
                     <p:rowExpansion>
                         <p:panelGrid columns="2" style="width: 990px ">
                             <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">                            
                                 <f:facet name="header">
-                                    <p:graphicImage value="imagenes/PLC#{car.model}i.jpg"/> 
+                                    <p:graphicImage value="imagenes/prod/PLC#{car.model}i.jpg"/> 
                                 </f:facet>
                                 <h:outputText value="Tacs" />
                                 <h:link outcome="TAC.xhtml" value="TAC1235"/>
@@ -171,7 +178,10 @@
                     </f:facet>
 
                     <p:column  sortBy="#{car2.name}" filterBy="#{car2.name}" filterMatchMode="contains"      headerText="TAC" >
-                        <p:commandLink value="#{car2.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car2.idtac)}"/>
+                        <p:commandLink value="#{car2.name}" action="TAC.xhtml" >
+                            <f:actionListener binding="#{coreTeamController.atrapa(car2.idtac)}" />
+                            <f:actionListener binding="#{coreTeamController.tacnameponer(car2)}" />                       
+                        </p:commandLink>
                     </p:column>
 
                     <p:column  sortBy="#{car2.description}" filterMatchMode="contains" filterBy="#{car2.description}" headerText="Description"  >
@@ -244,7 +254,9 @@
                 </p:column> 
 
                     <p:column  sortBy="#{car3.TACidtac.name}" filterMatchMode="contains" filterBy="#{car3.TACidtac.name}" headerText="TAC" >
-                        <p:commandLink value="#{car3.TACidtac.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car3.TACidtac.idtac)}"/>
+                        <p:commandLink value="#{car3.TACidtac.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car3.TACidtac.idtac)}">
+                            <f:actionListener binding="#{coreTeamController.tacnameponer(car3.TACidtac)}" />
+                        </p:commandLink>
                
                     </p:column>
                     
@@ -259,7 +271,21 @@
 
 
             </div>
+        
+                      
+                        
+<h:form enctype="multipart/form-data">
+    
+    
+    <p:fileUpload requiredMessage="Necesario"  value="#{uploaderBB.file}" mode="simple"  required="true" style="margin-left: -1%"/>
 
+    <p:commandButton   actionListener="#{uploaderBB.upload()}" ajax="false" value="Guardar"  style="margin-left: 2%;margin-top: 3%"/>
+           
+<p:fileUpload mode="simple" fileUploadListener="#{uploaderBB.handleFileUpload}"
+allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
+auto="true"/>
+
+</h:form>
         <br />
         <h:link outcome="/coreTeam/List" value="Show All CoreTeam Items"/>
         <br />

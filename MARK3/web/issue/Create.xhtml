@@ -9,8 +9,9 @@
     <ui:composition>
 
         <p:dialog id="IssueCreateDlg" widgetVar="IssueCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateIssueTitle}">
+        
             <h:form id="IssueCreateForm">
-                <h:panelGroup id="display">
+                <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{issueController.selected != null}">
                       <p:outputLabel value="#{bundle.CreateIssueLabel_issue}" for="issue" />
                       <p:inputText id="issue" value="#{issueController.selected.issue}" title="#{bundle.CreateIssueTitle_issue}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_issue}"/>
@@ -20,13 +21,16 @@
                         <p:inputTextarea id="description" value="#{issueController.selected.description}" title="#{bundle.CreateIssueTitle_description}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_description}"/>
                         <p:outputLabel value="#{bundle.CreateIssueLabel_rootCause}" for="rootCause" />
                         <p:inputTextarea id="rootCause" value="#{issueController.selected.rootCause}" title="#{bundle.CreateIssueTitle_rootCause}" required="true" requiredMessage="#{bundle.CreateIssueRequiredMessage_rootCause}"/>
-                       
                         <p:outputLabel value="#{bundle.CreateIssueLabel_TACidtac}" for="TACidtac" />
-                        <p:selectOneMenu id="TACidtac" value="#{issueController.selected.TACidtac}" required="true" requiredMessage="#{bundle.EditIssueRequiredMessage_TACidtac}">
+                        
+                        <p:inputText  id="TACidtac2"  value="#{issueController.selected.TACidtac}"/>
+                        <p:outputLabel value="#{bundle.CreateIssueLabel_TACidtac}" for="TACidtac2" />
+                        <p:selectOneMenu id="TACidtac" value="#{issueController.selected.TACidtac}" onchange="" required="true" requiredMessage="#{bundle.EditIssueRequiredMessage_TACidtac}">
                             <f:selectItems value="#{tacController.itemsAvailableSelectOne}"
                                            var="TACidtacItem"
                                            itemValue="#{TACidtacItem}"
-                                           itemLabel="#{TACidtacItem.name}"/>
+                                           itemLabel="#{TACidtacItem.name}"
+                                           />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{issueController.create}"  onclick="IssueCreateDialog.close()" value="#{bundle.Save}" update="display,:IssueListForm:datalist,:growl" oncomplete="handleSubmit(args,'IssueCreateDialog');"/>

@@ -18,16 +18,42 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import jpa.entities.Tac;
 
-@Named("pmController")
+ @Named("pmController")
 @SessionScoped
 public class PmController implements Serializable {
 
     @EJB
     jpa.session.PmFacade ejbFacade;
+    jpa.session.TacFacade ejbFacadetac;
     private List<Pm> items = null;
     private Pm selected;
     private Pm lpm;
+    private List<Tac> listatac;
+
+    
+    public void atrapatacid(int tac){
+    
+        listatac= ejbFacadetac.nametacpm(tac);
+        
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    public List<Tac> getListatac() {
+        return listatac;
+    }
+
+    public void setListatac(List<Tac> listatac) {
+        this.listatac = listatac;
+    }
 
     public Pm getLpm() {
         return lpm;

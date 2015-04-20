@@ -19,27 +19,24 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import jpa.entities.Issue;
+import jpa.entities.Tac;
 import jpa.session.IssueFacade;
+import jpa.session.TacFacade;
 
 @Named("coreTeamController")
 @SessionScoped
 public class CoreTeamController implements Serializable {
 
-   @EJB
-   jpa.session.CoreTeamFacade ejbFacade;
+    @EJB jpa.session.CoreTeamFacade ejbFacade;
     @EJB jpa.session.IssueFacade ejbFacadeissue;
+    @EJB jpa.session.TacFacade ejbFacadetac;
     
     private List<CoreTeam> items = null;
     private CoreTeam selected;
 
     private List<CoreTeam> listact;
     private List<Issue> listaissue;
-    
 
-  
-      
-      
-    
 
     public CoreTeamFacade getEjbFacade() {
         return ejbFacade;
@@ -213,6 +210,7 @@ public class CoreTeamController implements Serializable {
 public void atrapa (int ct){
 listaCt(ct);
 addct(ct);
+//tacname(ct);
 }
 
 public void listaCt(int ct){
@@ -220,10 +218,34 @@ listact=ejbFacade.listact(ct);
 System.out.println("CT: "+ct);
 }
 
+
 public void addct(int ct){
 listaissue=ejbFacadeissue.listaissues(ct);
 System.out.println("issue: "+ct);
 }
+
+private Tac tacname;
+
+    public Tac getTacname() {
+        return tacname;
+    }
+
+    public void setTacname(Tac tacname) {
+        this.tacname = tacname;
+    }
+
+public void tacnameponer(Tac name){
+tacname=name;
+System.out.println("issue: "+name);
+}
+
+    public TacFacade getEjbFacadetac() {
+        return ejbFacadetac;
+    }
+
+    public void setEjbFacadetac(TacFacade ejbFacadetac) {
+        this.ejbFacadetac = ejbFacadetac;
+    }
 
 
 

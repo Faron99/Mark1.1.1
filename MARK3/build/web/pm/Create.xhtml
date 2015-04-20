@@ -9,7 +9,7 @@
     <ui:composition>
 
         <p:dialog id="PmCreateDlg" widgetVar="PmCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePmTitle}">
-            <h:form id="PmCreateForm">
+            <h:form id="PmCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pmController.selected != null}">
                         <p:outputLabel value="#{bundle.CreatePmLabel_name}" for="name" />
@@ -20,10 +20,22 @@
                         <p:inputText id="workcall" value="#{pmController.selected.workcall}" title="#{bundle.CreatePmTitle_workcall}" />
                         <p:outputLabel value="#{bundle.CreatePmLabel_email}" for="email" />
                         <p:inputText id="email" value="#{pmController.selected.email}" title="#{bundle.CreatePmTitle_email}" />
+                        
+                        
                         <p:outputLabel value="#{bundle.CreatePmLabel_image}" for="image" />
-                        <p:inputText id="image" value="#{pmController.selected.image}" title="#{bundle.CreatePmTitle_image}" required="true" requiredMessage="#{bundle.CreatePmRequiredMessage_image}"/>
+                        <p:inputText id="image" value="#{uploaderBB.name}" title="#{bundle.CreatePmTitle_email}" />
+                        
+                        
+                        
+                   
+                   
+                        <p:fileUpload   value="#{uploaderBB.file}" mode="simple"  />              
+                   
+                    
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pmController.create}" onclick="PmCreateDialog.hide()" value="#{bundle.Save}" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args,'PmCreateDialog');"/>
+                    <p:commandButton actionListener="#{pmController.create}" onclick="PmCreateDialog.hide()" value="#{bundle.Save}" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args,'PmCreateDialog');">
+                        <f:actionListener binding="#{uploaderBB.upload()}"/>
+                    </p:commandButton>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PmCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

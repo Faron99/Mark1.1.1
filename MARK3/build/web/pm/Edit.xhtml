@@ -25,7 +25,7 @@
                         <p:outputLabel value="#{bundle.EditPmLabel_image}" for="image" />
                         <p:inputText id="image" value="#{pmController.selected.image}" title="#{bundle.EditPmTitle_image}" required="true" requiredMessage="#{bundle.EditPmRequiredMessage_image}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pmController.update}" value="#{bundle.Save}" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PmEditDialog');"/>
+                    <p:commandButton actionListener="#{pmController.update}" value="#{bundle.Save}" onclick="PmEditDialog.hide()" update="display,:PmListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PmEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PmEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
