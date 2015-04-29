@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import jpa.entities.CoreTeam;
 import jpa.entities.Tac;
 
@@ -112,5 +113,26 @@ public class TacFacade extends AbstractFacade<Tac> {
     return selec;
     }  
     
+     public List<Tac> autoQueryName(String patron) {
+
+        TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial( c.noParte,c.nombre) FROM TblMaterial c WHERE c.nombre LIKE :patron", Tac.class);
+        query.setParameter("patron", patron.toLowerCase() + "%");
+
+        List<Tac> res = query.getResultList();
+        res.add(new Tac(patron, "Buscar: "));
+
+        return res;
+
+    }
+
+    public List<Tac> autoQueryPartNumber(String patron) {
+        //
+        TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial(c.noParte,c.nombre) FROM TblMaterial c WHERE c.noParte LIKE :patron", Tac.class);
+        query.setParameter("patron", patron.toLowerCase() + "%");
+
+        List<Tac> res = query.getResultList();
+        res.add(new Tac(patron, "noParte"));
+        return res;
+    }
     
 }

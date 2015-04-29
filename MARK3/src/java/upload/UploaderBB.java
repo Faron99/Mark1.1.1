@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
@@ -19,7 +20,7 @@ import org.primefaces.model.UploadedFile;
 
 @ManagedBean
 @SessionScoped
-public class UploaderBB {
+public class UploaderBB implements Serializable{
 
  private UploadedFile file;
  private  String imagen;
@@ -83,7 +84,8 @@ public class UploaderBB {
             in.close();
             out.flush();
             out.close();
-            System.out.println("Archivo Guardado");
+            System.out.println("Archivo Guardado: "+ruta+nombre);
+               System.out.println("Otro nombre: "+name);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

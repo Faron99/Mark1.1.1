@@ -52,7 +52,7 @@ public class Wiki implements Serializable {
     @Size(max = 45)
     @Column(name = "Model")
     private String model;
-    @Size(max = 200)
+    @Size(max = 1000)
     @Column(name = "Description")
     private String description;
     @Size(max = 45)

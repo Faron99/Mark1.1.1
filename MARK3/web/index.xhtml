@@ -27,7 +27,7 @@
                 <p:commandButton id="boto1" value="Login" icon="ui-icon-extlink"
                                  action="#{indexBean.login()}"
                                  update=":form1:Addp :form1:Addpm"
-                                 style="margin-left: 15px; " 
+                                 style="margin-left: 5px; " 
                                  />
 
             </h:form>           
@@ -41,12 +41,17 @@
                         <p:menuitem  action="index.xhtml" value="Home"/>
                         <p:submenu  label="Create Reports (PDF)">
                             
-                            <p:menuitem value="Create Product Report">
+                            <p:menuitem value="Create Product Report...">
                                  <h:commandLink>
                                     <p:outputLabel value="Create Product Report" />   
                                 <p:dataExporter type="pdf" target=":formaproducto:dataproductos" 
                                                 fileName="Products"/>  
                                 </h:commandLink>    
+                                <h:commandLink>
+                                 
+                                    <p:dataExporter type="xls" target=":formaproducto:dataproductos" fileName="Products" />
+                                </h:commandLink>
+ 
                             </p:menuitem>
                         </p:submenu>                           
                     </p:submenu>                   
@@ -63,26 +68,21 @@
                     <p:separator/>
                     <p:menuitem value="Quit" url="http://www.plantronics.com/es/"  />
                 </p:menu>
-
                 <h3 style="margin-top:10px;text-align: center">Project Manager´s</h3>
-
                 <p:accordionPanel id="ProM" var="item" value="#{pmController.items}"  >
                     <p:tab title="#{item.name}"  >
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:graphicImage value="#{item.image}"/>
                             <p:commandButton icon="ui-icon-search" update=":dialogoform:carDetailpm" 
                                              oncomplete="PF('carDialogpm').show()" actionListener="#{pmController.recibepm(item)}">
-                               
-                            </p:commandButton>
-                                                 
-                           
-                           
+                            </p:commandButton> 
                         </h:panelGrid>
-
                     </p:tab>
                 </p:accordionPanel> 
             </h:form>
         </div>
+        
+        
         <h:form id="dialogoform">
             <p:dialog id="dialogo" header="PM Info" widgetVar="carDialogpm" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="carDetailpm"  style="text-align:center;">
@@ -94,16 +94,14 @@
                         <h:outputText value="#{pmController.lpm.office}" />
                         <h:outputText value="Email" />
                         <h:outputText value="#{pmController.lpm.email}@plantronics.com" />
-                        <h:outputText value="Office" />
+                        <h:outputText value="Work Call" />
                         <h:outputText value="#{pmController.lpm.workcall}" />
                         </p:panelGrid>
-                        </f:facet>
-                      
+                        </f:facet>                    
                         <p:dataList value="#{pmController.lpm.tacList}" var="cartac" >
-                      
-                            <p:commandLink  value="#{cartac.name}" action="TAC.xhtml" ></p:commandLink>
-                             </p:dataList>
-                        
+                            <p:commandLink  value="#{cartac.name}" action="TAC.xhtml" >
+                            </p:commandLink>
+                        </p:dataList>        
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>              
@@ -113,15 +111,25 @@
 
         <div id="content" class="left_content">
             <h:form id="form">
+                
+                <p:outputLabel value="Global Search: "/>
+                <p:autoComplete id="global" value="#{tacController.listafiltac}"  completeMethod="#{tacController.autocomplete}"
+                                var="p" itemLabel="#{p.name}" itemValue="#{p}" title="No. Parte o nombre" converter="mtl" minQueryLength="2" 
+                                                      forceSelection="true" maxResults="5" queryDelay="500"/>
+                   <br/>
+                <h:outputLabel/>
+                <br/>
+                <h:outputLabel/>
+                
+                <p:fieldset legend="Search By Product" toggleable="true" toggleSpeed="500" collapsed="true"  >
                 <p:dataTable var="car" value="#{wikiController.items}" widgetVar="carsTable"
                              emptyMessage="No records found with given criteria" paginator="true"
                              paginatorPosition="bottom"
                              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15" rows="10">
-
                     <f:facet name="header">
                         <p:outputPanel>
-                            <h:outputText value="Search Product Name" style="margin-left: -700px" />
+                            <h:outputText value="Product Name" style="margin-left: -650px" />
                             <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" 
                                          style="width:150px;margin-left: 10px"
                                          placeholder="Enter keyword"/>
@@ -144,7 +152,8 @@
                         <p:panelGrid columns="2" style="width: 990px ">
                             <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">                            
                                 <f:facet name="header">
-                                    <p:graphicImage value="imagenes/prod/PLC#{car.model}i.jpg"/> 
+                                    <p:graphicImage value="imagenes/prod/#{car.image}i.jpg"/> 
+                               
                                 </f:facet>
                                 <h:outputText value="Tacs" />
                                 <h:link outcome="TAC.xhtml" value="TAC1235"/>
@@ -155,13 +164,15 @@
                         </p:panelGrid>
                     </p:rowExpansion>
                 </p:dataTable>
+                    </p:fieldset>
                 <br/>
                 <h:outputLabel/>
                 <br/>
                 <h:outputLabel/>
-
-
-
+                
+                
+                
+                <p:fieldset legend="Search By TAC" toggleable="true" toggleSpeed="500" collapsed="true">
                 <p:dataTable id="datat" var="car2" value="#{tacController.items}" widgetVar="carsTable2"
                              emptyMessage="No records found with given criteria" paginator="true"
                              paginatorPosition="bottom"
@@ -170,20 +181,18 @@
                              rows="10" >
                     <f:facet name="header">
                         <p:outputPanel>
-                            <h:outputText value="Search TAC"  style="margin-left: -620px"/>
+                            <h:outputText value="TAC"  style="margin-left: -620px"/>
                             <p:inputText id="globalFilter" onkeyup="PF('carsTable2').filter()" style="width:150px; margin-left: 10px" placeholder="Enter keyword"/>
                             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="datat" trigger="toggler" />
                         </p:outputPanel>                         
                     </f:facet>
-
                     <p:column  sortBy="#{car2.name}" filterBy="#{car2.name}" filterMatchMode="contains"      headerText="TAC" >
                         <p:commandLink value="#{car2.name}" action="TAC.xhtml" >
                             <f:actionListener binding="#{coreTeamController.atrapa(car2.idtac)}" />
                             <f:actionListener binding="#{coreTeamController.tacnameponer(car2)}" />                       
                         </p:commandLink>
                     </p:column>
-
                     <p:column  sortBy="#{car2.description}" filterMatchMode="contains" filterBy="#{car2.description}" headerText="Description"  >
                         <h:outputText value="#{car2.description}" />
                     </p:column>
@@ -194,37 +203,34 @@
                         <p:commandLink value="Issues List" actionListener="#{issueController.atrapapm(car2.idtac)}"
                                        update=":form:carDetail" onclick="PF('carDialog').show();"  />
                     </p:column>
-
                 </p:dataTable>
+               </p:fieldset>
+                
                 <p:dialog id="dialog" header="Issues" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-
         <p:outputPanel id="carDetail" style="text-align:center;">
 
           Issues
 
           <p:dataTable var="car" value="#{issueController.listaissuetabla}">
 
-         <p:column headerText="#Issue">
-        <h:outputText value="#{car.issue}" />
-    </p:column>
-    <p:column headerText="Root Cause">
-        <h:outputText value="#{car.rootCause}" />
-    </p:column>
-    <p:column headerText="Description">
-        <h:outputText value="#{car.description}" />
-    </p:column>
-    
-</p:dataTable>
+            <p:column headerText="#Issue">
+                <h:outputText value="#{car.issue}" />
+            </p:column>
+            <p:column headerText="Root Cause">
+                <h:outputText value="#{car.rootCause}" />
+            </p:column>
+            <p:column headerText="Description">
+                <h:outputText value="#{car.description}" />
+            </p:column> 
+            </p:dataTable>
             <p:commandButton value="Close" onclick="PF('carDialog').close();" update=":form"/>
         </p:outputPanel>
-    </p:dialog>         
+            </p:dialog>         
                  <br/>
                 <h:outputLabel/>
                 <br/>
                 <h:outputLabel/>
-
-                
-                
+                        <p:fieldset legend="Search By Issue" toggleable="true" toggleSpeed="500" collapsed="true">
                 <p:dataTable var="car3" value="#{issueController.items}" widgetVar="carsTable3"
                              emptyMessage="No records found with given criteria" paginator="true"
                              paginatorPosition="bottom"
@@ -233,7 +239,7 @@
 
                     <f:facet name="header">
                         <p:outputPanel>
-                            <h:outputText value="Search Issues" style="margin-left: -700px" />
+                            <h:outputText value="Issues" style="margin-left: -700px" />
                             <p:inputText id="globalFilter" onkeyup="PF('carsTable3').filter()" 
                                          style="width:150px;margin-left: 10px"
                                          placeholder="Enter keyword"/>
@@ -244,32 +250,24 @@
                     <p:column  sortBy="#{car3.description}" filterMatchMode="contains" filterBy="#{car3.description}" headerText="Description" >
                         <h:outputText value="#{car3.description}" />
                     </p:column>
-                  
                     <p:column  sortBy="#{car3.rootCause}" filterBy="#{car3.rootCause}" headerText="Root Cause" filterMatchMode="contains">
                         <h:outputText value="#{car3.rootCause}" />
-                    </p:column>
-                    
+                    </p:column>                 
                     <p:column  headerText="Recommend" sortBy="#{car3.recommend}" filterBy="#{car3.recommend}"  filterMatchMode="contains" >
                                <h:outputText value="#{car3.recommend}" />       
-                </p:column> 
-
+                    </p:column> 
                     <p:column  sortBy="#{car3.TACidtac.name}" filterMatchMode="contains" filterBy="#{car3.TACidtac.name}" headerText="TAC" >
                         <p:commandLink value="#{car3.TACidtac.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car3.TACidtac.idtac)}">
                             <f:actionListener binding="#{coreTeamController.tacnameponer(car3.TACidtac)}" />
-                        </p:commandLink>
-               
-                    </p:column>
-                    
-                </p:dataTable>
-                
-                
+                        </p:commandLink>              
+                    </p:column>                   
+                </p:dataTable>   
+                            </p:fieldset>
             </h:form>
         </div>
 
         <div id="bottom">
             <ui:insert name="bottom"></ui:insert>
-
-
             </div>
         
                       

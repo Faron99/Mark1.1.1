@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
    <h:head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    </h:head>
@@ -14,7 +14,7 @@
             <ui:define name="content">
                 <div id="content" class="left_content">
                      <h:form>
-                         <p:fieldset legend="#{wikiController.bus.name} #{wikiController.bus.model}" style="width: 800px; text-align: justify"   >
+                         <p:fieldset legend="#{wikiController.bus.name} #{wikiController.bus.model}" style="width: 780px; text-align: justify"   >
                              <h:outputText value="#{wikiController.bus.description}"/>
                           </p:fieldset>                       
                           <p:fieldset legend="Relation TACS" style="width: 800px" >
@@ -29,7 +29,7 @@
                     <h:form style="margin-top:0px">
                            <p:panelGrid columns="2">
                             <f:facet name="header">
-                                <p:graphicImage value="imagenes/prod/PLC#{car.model}i.jpg" style="width: 200px;height: 200px" />
+                                <p:graphicImage value="imagenes/prod/#{wikiController.bus.image}.jpg" style="width: 200px;height: 200px" />
                             </f:facet>
                             <h:outputText value="imagen:" />
                             <h:outputText value="#{wikiController.bus.image}" />

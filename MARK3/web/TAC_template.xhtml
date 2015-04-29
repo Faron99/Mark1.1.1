@@ -9,14 +9,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout_1.css"/>
-        <title>Facelets Template</title>
+        <title>#{coreTeamController.tacname.name}</title>
     </h:head>
 
     <h:body>
 <div id="top">
             <ui:insert></ui:insert>
             <h:form id="forma1">
-                <p:graphicImage  value="/imagenes/plntronics_logo3.jpg" style="height: 30px;width:320px;margin-bottom: -9px  "/> 
+                <p:graphicImage  value="/imagenes/logos/plntronics_logo3.jpg" style="height: 30px;width:320px;margin-bottom: -9px  "/> 
                 <p:inputText placeholder="User"  style="margin-left: 650px;" />            
                 <p:commandButton type="button" value="Login" icon="ui-icon-extlink" style="margin-left: 15px; "  />       
             </h:form>           
@@ -33,15 +33,22 @@
                             <p:menuitem value="Edit/Add Issue" url="/faces/issue/List.xhtml" /> 
                             <p:menuitem value="Edit/Add Core Team" actionListener="#{tacController.tacselected}" url="/faces/coreTeam/List.xhtml" /> 
                         </p:submenu>
-                        <p:submenu label="Create Report (PDF)" icon="ui-icon-folder-open" transient="true" >             
-                            <p:menuitem value="Lessons Learned report" >
+                        <p:submenu label="Create Report..." icon="ui-icon-folder-open" transient="true" >             
+                            <p:menuitem  >
                                 <h:commandLink >
-                                 <p:outputLabel value="Lesson Learned report" />   
+                                 <p:outputLabel value="Lesson Learned report PDF" />   
                                 <p:dataExporter type="pdf" target=":TacListForm:datalist" 
                                                 fileName="#{coreTeamController.tacname.name}_Lessons_Learned"/>  
                                 </h:commandLink>
-                                                           
-                            </p:menuitem>                      
+                                                   
+                            </p:menuitem>      
+                            <p:menuitem>
+                                <h:commandLink >
+                                 <p:outputLabel value="Lesson Learned report XLS" />   
+                                <p:dataExporter type="xls" target=":TacListForm:datalist" 
+                                                fileName="#{coreTeamController.tacname.name}_Lessons_Learned"/>  
+                                </h:commandLink>    
+                            </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Help" icon="ui-icon-help">
                             <p:menuitem value="Contents" url="#" />            

@@ -76,6 +76,12 @@ public class Tac implements Serializable {
         this.name = name;
         this.description = description;
     }
+    
+    public Tac(Integer idtac, String name) {
+        this.idtac = idtac;
+        this.name = name;
+        
+    }
 
     public Integer getIdtac() {
         return idtac;

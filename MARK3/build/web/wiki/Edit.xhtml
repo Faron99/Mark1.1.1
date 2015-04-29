@@ -19,7 +19,7 @@
                         <p:outputLabel value="#{bundle.EditWikiLabel_model}" for="model" />
                         <p:inputText id="model" value="#{wikiController.selected.model}" title="#{bundle.EditWikiTitle_model}" />
                         <p:outputLabel value="#{bundle.EditWikiLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{wikiController.selected.description}" title="#{bundle.EditWikiTitle_description}" />
+                        <p:inputTextarea id="description" value="#{wikiController.selected.description}" title="#{bundle.EditWikiTitle_description}" />
                         <p:outputLabel value="#{bundle.EditWikiLabel_image}" for="image" />
                         <p:inputText id="image" value="#{wikiController.selected.image}" title="#{bundle.EditWikiTitle_image}" />
                         <p:outputLabel value="#{bundle.EditWikiLabel_disp}" for="disp" />
@@ -29,7 +29,7 @@
                         <p:outputLabel value="#{bundle.EditWikiLabel_ent}" for="ent" />
                         <p:inputText id="ent" value="#{wikiController.selected.ent}" title="#{bundle.EditWikiTitle_ent}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{wikiController.update}" value="#{bundle.Save}" update="display,:WikiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WikiEditDialog');"/>
+                    <p:commandButton actionListener="#{wikiController.update}" value="#{bundle.Save}" onclick="WikiEditDialog.hide()" update="display,:WikiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WikiEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="WikiEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
