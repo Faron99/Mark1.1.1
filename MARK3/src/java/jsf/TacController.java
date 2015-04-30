@@ -25,7 +25,7 @@ public class TacController implements Serializable {
 
     @EJB
     jpa.session.TacFacade ejbFacade;
-    jpa.session.TacFacade mtl;
+    //jpa.session.TacFacade mtl;
     private List<Tac> items = null;
     private Tac selected;
     private Tac tacselected;
@@ -53,18 +53,22 @@ System.out.println("Id tac: "+ idtac);
     
     
     public List<Tac> autocomplete(String patron){
+    
+    return ejbFacade.newquery(patron);
+    }
+   /* public List<Tac> autocomplete(String patron){
     System.out.println("sigo funcionando autoComplete METODO");
         if (patron.matches("^[a-zA-Z0]*$")) {
             System.out.println("busqueda por nombre");
-            listafiltac = mtl.autoQueryName(patron);
+            listafiltac = ejbFacade.autoQueryName(patron);
         } else {
             System.out.println("busqueda por numero de parte");
-            listafiltac = mtl.autoQueryPartNumber(patron);
+            
         }
     
-    
+   
     return listafiltac;
-    }
+    }*/
       
     public String getAuto() {
         return auto;

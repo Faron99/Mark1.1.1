@@ -26,7 +26,7 @@
 
                 <p:commandButton id="boto1" value="Login" icon="ui-icon-extlink"
                                  action="#{indexBean.login()}"
-                                 update=":form1:Addp :form1:Addpm"
+                              
                                  style="margin-left: 5px; " 
                                  />
 
@@ -113,9 +113,15 @@
             <h:form id="form">
                 
                 <p:outputLabel value="Global Search: "/>
-                <p:autoComplete id="global" value="#{tacController.listafiltac}"  completeMethod="#{tacController.autocomplete}"
-                                var="p" itemLabel="#{p.name}" itemValue="#{p}" title="No. Parte o nombre" converter="mtl" minQueryLength="2" 
-                                                      forceSelection="true" maxResults="5" queryDelay="500"/>
+                <p:autoComplete id="global" value="#{wikiController.autowiki}"  
+                                completeMethod="#{wikiController.autocomplete2}"
+                                converter="mtl"
+                                var="p" 
+                                itemLabel="#{p.name}" 
+                                itemValue="#{p}" 
+                                title="No. Parte o nombre"  
+                                minQueryLength="1" 
+                                forceSelection="true" maxResults="5" queryDelay="500"/>
                    <br/>
                 <h:outputLabel/>
                 <br/>

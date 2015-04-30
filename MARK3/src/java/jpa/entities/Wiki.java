@@ -76,6 +76,9 @@ public class Wiki implements Serializable {
     public Wiki(Integer idWiki) {
         this.idWiki = idWiki;
     }
+    public Wiki(String patron) {
+        this.description=patron;
+    }
 
     public Integer getIdWiki() {
         return idWiki;

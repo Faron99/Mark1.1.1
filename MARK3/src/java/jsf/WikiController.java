@@ -30,6 +30,10 @@ public class WikiController implements Serializable {
     List<Wiki> listaWiki;
     String datowiki;
     Wiki bus;
+    private Wiki autowiki;
+    private List<Wiki> autolistwiki;
+    
+    
 
      public void buscarWiki(Wiki w){
     
@@ -37,12 +41,59 @@ public class WikiController implements Serializable {
         System.out.println("w seleccionado: " +w);
     
     }
+     
+     public List<Wiki>autocomplete2(String dato){
+      System.out.println("sigo funcionando autoComplete METODO");
+      
+            autolistwiki = ejbFacade.autoQueryName2(dato);
+       
+        return autolistwiki;
+         
+     }
+
+     
+  /*   public List<Wiki>autocomplete(String dato){
+      System.out.println("sigo funcionando autoComplete METODO");
+        if (dato.matches("^[a-zA-Z0]*$")) {
+            System.out.println("busqueda por nombre");
+            autolistwiki = ejbFacade.autoQueryName(dato);
+        } else {
+            System.out.println("busqueda por numero de parte");
+            dato = ejbFacade.autoQueryPartNumber(dato);
+        }
+
+        // System.out.println(patron);
+        return autolistwiki;
+         
+     }*/
+
+     
+     
+    public List<Wiki> getAutolistrwiki() {
+        return autolistwiki;
+    }
+
+    public void setAutolistrwiki(List<Wiki> autolistrwiki) {
+        this.autolistwiki = autolistrwiki;
+    }
+     
+     
+     
+     
     public Wiki getBus() {
         return bus;
     }
 
     public void setBus(Wiki bus) {
         this.bus = bus;
+    }
+
+    public Wiki getAutowiki() {
+        return autowiki;
+    }
+
+    public void setAutowiki(Wiki autowiki) {
+        this.autowiki = autowiki;
     }
     
 

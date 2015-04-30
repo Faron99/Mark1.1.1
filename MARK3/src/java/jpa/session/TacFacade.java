@@ -113,26 +113,59 @@ public class TacFacade extends AbstractFacade<Tac> {
     return selec;
     }  
     
+    
+    public List<Tac> newquery(String patron1){
+    List<Tac> selec = null;
+        
+     try{
+        // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+    
+        Query query=em.createQuery("SELECT t.name FROM Tac t WHERE t.name=:name");
+        query.setParameter("name",patron1);
+        selec=query.getResultList();
+         System.out.println("Tacs autocompletes: "+selec);
+     } 
+     
+     catch(Exception e){
+         System.out.println(e);
+     }  
+        
+    return selec;
+    }  
+    
+    
+   /*  public List<Tac> autoNamequery(String patron1){
+    List<Tac> selec = null;
+        
+     try{
+        // Query query=em.createQuery("SELECT t FROM Issue t WHERE t.tACidtac.idtac=:id");
+    
+        Query query=em.createQuery("SELECT t.name FROM Tac t WHERE t.name=:name");
+        query.setParameter("name",patron1);
+        selec=query.getResultList();
+         System.out.println("Tacs autocompletes: "+selec);
+     } 
+     
+     catch(Exception e){
+         System.out.println(e);
+     }  
+        
+    return selec;
+    }  
+    
      public List<Tac> autoQueryName(String patron) {
-
-        TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial( c.noParte,c.nombre) FROM TblMaterial c WHERE c.nombre LIKE :patron", Tac.class);
+//TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial( c.noParte,c.nombre) FROM TblMaterial c WHERE c.nombre LIKE :patron", Tac.class);
+        
+        TypedQuery<Tac> query = em.createQuery("SELECT NEW jpa.entities.Tac(c.name) FROM Tac c WHERE c.name LIKE: patron",Tac.class);
         query.setParameter("patron", patron.toLowerCase() + "%");
 
         List<Tac> res = query.getResultList();
-        res.add(new Tac(patron, "Buscar: "));
-
+       // res.add(new Tac(patron, "Buscar: "));
+System.out.println("Tacs autocompletes2: "+res);
         return res;
 
-    }
+    }*/
 
-    public List<Tac> autoQueryPartNumber(String patron) {
-        //
-        TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial(c.noParte,c.nombre) FROM TblMaterial c WHERE c.noParte LIKE :patron", Tac.class);
-        query.setParameter("patron", patron.toLowerCase() + "%");
-
-        List<Tac> res = query.getResultList();
-        res.add(new Tac(patron, "noParte"));
-        return res;
-    }
+    
     
 }

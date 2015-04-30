@@ -83,6 +83,10 @@ public class Tac implements Serializable {
         
     }
 
+    public Tac(String patron) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getIdtac() {
         return idtac;
     }
