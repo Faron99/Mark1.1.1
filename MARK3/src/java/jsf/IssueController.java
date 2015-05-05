@@ -36,6 +36,34 @@ public class IssueController implements Serializable {
     private List<CoreTeam> listact;
     private List<Issue> listaissuetabla;
     private List<Issue> listafilter;
+    private Issue auto;
+    private List<Issue> autolist;
+    
+    
+    
+    public List<Issue> autocomplete(String dato){
+    
+    return autolist=ejbFacade.autoQueryName(dato);
+    }
+
+    public Issue getAuto() {
+        return auto;
+    }
+
+    public void setAuto(Issue auto) {
+        this.auto = auto;
+    }
+
+    public List<Issue> getAutolist() {
+        return autolist;
+    }
+
+    public void setAutolist(List<Issue> autolist) {
+        this.autolist = autolist;
+    }
+    
+    
+    
     
    
     

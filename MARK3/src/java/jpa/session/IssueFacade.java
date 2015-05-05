@@ -75,4 +75,17 @@ return lista;
 
 }    
     
+     public List<Issue> autoQueryName(String patron) {
+//TypedQuery<Tac> query = em.createQuery("SELECT NEW com.server.entity.beans.TblMaterial( c.noParte,c.nombre) FROM TblMaterial c WHERE c.nombre LIKE :patron", Tac.class);
+        
+        Query query = em.createQuery("SELECT c FROM Issue c WHERE c.description LIKE :patron");
+        query.setParameter("patron", patron.toLowerCase() + "%");
+
+        List<Issue> res = query.getResultList();
+       
+System.out.println("Tacs autocompletes2: "+res);
+        return res;
+
+    }
+    
 }
