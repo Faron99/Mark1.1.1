@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="WikiHasIssueListForm">
-                <p:panel header="#{bundle.ListWikiHasIssueTitle}">
+                <p:panel >
                     <p:dataTable id="datalist" value="#{wikiHasIssueController.items}" var="item"
                                  selectionMode="single" selection="#{wikiHasIssueController.selected}"
                                  paginator="true"
@@ -27,23 +27,18 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
+                       
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListWikiHasIssueTitle_demas}"/>
+                                <h:outputText value="Product"/>
                             </f:facet>
-                            <h:outputText value="#{item.demas}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListWikiHasIssueTitle_wiki}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.wiki}"/>
+                            <h:outputText value="#{item.wiki.name}-#{item.wiki.model}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListWikiHasIssueTitle_tac}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tac}"/>
+                            <h:outputText value="#{item.tac.name}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{wikiHasIssueController.prepareCreate}" update=":WikiHasIssueCreateForm" oncomplete="PF('WikiHasIssueCreateDialog').show()"/>

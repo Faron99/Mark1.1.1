@@ -24,10 +24,29 @@ import javax.faces.convert.FacesConverter;
 public class WikiHasIssueController implements Serializable {
 
     @EJB
-    private jpa.session.WikiHasIssueFacade ejbFacade;
+    jpa.session.WikiHasIssueFacade ejbFacade;
     private List<WikiHasIssue> items = null;
     private WikiHasIssue selected;
+    private List<WikiHasIssue> dato;
 
+    
+    
+    public void getTAC(int r){
+    
+    dato=ejbFacade.lista(r);
+    System.out.println("producto seleccionado: "+r);
+    }
+    
+    
+    
+    public List<WikiHasIssue> getDato() {
+        return dato;
+    }
+
+    public void setDato(List<WikiHasIssue> dato) {
+        this.dato = dato;
+    }
+    
     public WikiHasIssueController() {
     }
 

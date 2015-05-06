@@ -12,22 +12,23 @@
             <h:form id="WikiHasIssueCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{wikiHasIssueController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateWikiHasIssueLabel_demas}" for="demas" />
-                        <p:inputText id="demas" value="#{wikiHasIssueController.selected.demas}" title="#{bundle.CreateWikiHasIssueTitle_demas}" />
-                        <p:outputLabel value="#{bundle.CreateWikiHasIssueLabel_wiki}" for="wiki" />
+                        <p:outputLabel value="Product" for="wiki" />
                         <p:selectOneMenu id="wiki" value="#{wikiHasIssueController.selected.wiki}" required="true" requiredMessage="#{bundle.EditWikiHasIssueRequiredMessage_wiki}">
                             <f:selectItems value="#{wikiController.itemsAvailableSelectOne}"
                                            var="wikiItem"
-                                           itemValue="#{wikiItem}"/>
+                                           itemValue="#{wikiItem}"
+                                           itemLabel="#{wikiItem.name}-#{wikiItem.model}"/>
+                                           
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateWikiHasIssueLabel_tac}" for="tac" />
                         <p:selectOneMenu id="tac" value="#{wikiHasIssueController.selected.tac}" required="true" requiredMessage="#{bundle.EditWikiHasIssueRequiredMessage_tac}">
                             <f:selectItems value="#{tacController.itemsAvailableSelectOne}"
                                            var="tacItem"
-                                           itemValue="#{tacItem}"/>
+                                           itemValue="#{tacItem}"
+                                           itemLabel="#{tacItem.name}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{wikiHasIssueController.create}" value="#{bundle.Save}" update="display,:WikiHasIssueListForm:datalist,:growl" oncomplete="handleSubmit(args,'WikiHasIssueCreateDialog');"/>
+                    <p:commandButton actionListener="#{wikiHasIssueController.create}" onclick="WikiHasIssueCreateDialog.hide()" value="#{bundle.Save}" update="display,:WikiHasIssueListForm:datalist,:growl" oncomplete="handleSubmit(args,'WikiHasIssueCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="WikiHasIssueCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -24,8 +24,8 @@ public class UploaderBB implements Serializable{
 
  private UploadedFile file;
  private  String imagen;
- private String ruta = ("C:\\Users\\mmercadoco\\Documents\\NetBeansProjects\\MARK3\\web\\imagenes\\");
- 
+ //private String ruta = ("C:\\Users\\mmercadoco\\Documents\\NetBeansProjects\\MARK3\\web\\imagenes\\");
+  private String ruta = ("C:\\Users\\mmercadoco\\Desktop\\imagenes\\");
  
  private String name= file.getFileName();
 
@@ -97,7 +97,7 @@ public void handleFileUpload(FileUploadEvent event) {
 
 try {
 
-File targetFolder = new File("C:\\Users\\mmercadoco\\Documents\\NetBeansProjects\\MARK3\\web\\imagenes");
+File targetFolder = new File("C:\\Users\\mmercadoco\\Desktop\\imagenes\\");
 
 InputStream inputStream = event.getFile().getInputstream();
 OutputStream out = new FileOutputStream(new File(targetFolder,

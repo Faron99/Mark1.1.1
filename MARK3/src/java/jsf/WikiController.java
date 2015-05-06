@@ -18,6 +18,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import jpa.entities.WikiHasIssue;
+import jpa.session.WikiHasIssueFacade;
 
 @Named("wikiController")
 @SessionScoped
@@ -25,6 +27,8 @@ public class WikiController implements Serializable {
 
     @EJB
     jpa.session.WikiFacade ejbFacade;
+    @EJB
+    jpa.session.WikiHasIssueFacade wikifaca;
     private List<Wiki> items = null;
     private Wiki selected;
     List<Wiki> listaWiki;
@@ -32,9 +36,19 @@ public class WikiController implements Serializable {
     Wiki bus;
     private Wiki autowiki;
     private List<Wiki> autolistwiki;
-    
+    private List<WikiHasIssue> getT;
     
 
+    
+    public void getTAC(int a){
+    
+        getT= wikifaca.lista(a);
+        System.out.println("producto seleccionado: "+a);
+    
+    
+    }
+    
+    
      public void buscarWiki(Wiki w){
     
     bus=w;
@@ -51,21 +65,51 @@ public class WikiController implements Serializable {
          
      }
 
-     
-  /*   public List<Wiki>autocomplete(String dato){
-      System.out.println("sigo funcionando autoComplete METODO");
-        if (dato.matches("^[a-zA-Z0]*$")) {
-            System.out.println("busqueda por nombre");
-            autolistwiki = ejbFacade.autoQueryName(dato);
-        } else {
-            System.out.println("busqueda por numero de parte");
-            dato = ejbFacade.autoQueryPartNumber(dato);
-        }
 
-        // System.out.println(patron);
+     
+    public WikiFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(WikiFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public WikiHasIssueFacade getWikifaca() {
+        return wikifaca;
+    }
+
+    public void setWikifaca(WikiHasIssueFacade wikifaca) {
+        this.wikifaca = wikifaca;
+    }
+
+    public List<Wiki> getAutolistwiki() {
         return autolistwiki;
-         
-     }*/
+    }
+
+    /*   public List<Wiki>autocomplete(String dato){
+    System.out.println("sigo funcionando autoComplete METODO");
+    if (dato.matches("^[a-zA-Z0]*$")) {
+    System.out.println("busqueda por nombre");
+    autolistwiki = ejbFacade.autoQueryName(dato);
+    } else {
+    System.out.println("busqueda por numero de parte");
+    dato = ejbFacade.autoQueryPartNumber(dato);
+    }
+    // System.out.println(patron);
+    return autolistwiki;
+    }*/
+    public void setAutolistwiki(List<Wiki> autolistwiki) {
+        this.autolistwiki = autolistwiki;
+    }
+
+    public List<WikiHasIssue> getGetT() {
+        return getT;
+    }
+
+    public void setGetT(List<WikiHasIssue> getT) {
+        this.getT = getT;
+    }
 
      
      

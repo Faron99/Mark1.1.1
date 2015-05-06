@@ -9,9 +9,9 @@
 
 #bottom {
     position:relative;
-    background-color: #c2dfef;
+    background-color: #036fab;
     padding: 5px;
-    
+    background-image: url("/imagenes/logos/Barras.jpg");
     margin-top: 500px;
 }
 
@@ -41,8 +41,9 @@
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: #D20005;
     padding: 5px;
+    
 }
 
 .left_content {
