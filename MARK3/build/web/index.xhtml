@@ -100,6 +100,8 @@
                         </f:facet>                    
                         <p:dataList value="#{pmController.lpm.tacList}" var="cartac" >
                             <p:commandLink  value="#{cartac.name}" action="TAC.xhtml" >
+                                <f:actionListener binding="#{coreTeamController.atrapa(cartac.idtac)}" />
+                            <f:actionListener binding="#{coreTeamController.tacnameponer(cartac)}" />       
                             </p:commandLink>
                         </p:dataList>        
                     </p:panelGrid>
@@ -170,8 +172,7 @@
                                     <p:graphicImage value="imagenes/prod/#{car.image}i.jpg"/> 
                                
                                 </f:facet>
-                                <h:outputText value="Tacs" />
-                                <h:link outcome="TAC.xhtml" />
+                               
                             </p:panelGrid>                        
                             <h:form id="textform" style="width: 455px;text-align: justify">
                                 <h:outputText value="#{car.description}" style="margin-left: 0px;margin-right: 0px"/>
@@ -274,7 +275,7 @@
                     <p:column  sortBy="#{car3.TACidtac.name}" filterMatchMode="contains" filterBy="#{car3.TACidtac.name}" headerText="TAC" >
                         <p:commandLink value="#{car3.TACidtac.name}" action="TAC.xhtml" actionListener="#{coreTeamController.atrapa(car3.TACidtac.idtac)}">
                             <f:actionListener binding="#{coreTeamController.tacnameponer(car3.TACidtac)}" />
-                        </p:commandLink>              
+                        </p:commandLink>               
                     </p:column>                   
                 </p:dataTable>   
                             </p:fieldset>

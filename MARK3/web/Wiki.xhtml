@@ -18,8 +18,14 @@
                              <h:outputText value="#{wikiController.bus.description}"/>
                           </p:fieldset>                       
                           <p:fieldset legend="Relation TACS" style="width: 800px" >
-                              <h:link outcome="TAC.xhtml" value="#{wikiHasIssueController.dato}"/>                           
-                          </p:fieldset>
+                              <p:dataList value="#{wikiHasIssueController.dato}" var="bien">
+                                  <p:commandLink  action="TAC.xhtml" value="#{bien.tac.name}"  >
+                                      <f:actionListener binding="#{coreTeamController.atrapa(bien.tac.idtac)}" />
+                                      <f:actionListener binding="#{coreTeamController.tacnameponer(bien.tac)}" />
+                                  </p:commandLink>
+                          </p:dataList>
+                              
+                              </p:fieldset>
                      </h:form> 
                 </div>
             </ui:define>          

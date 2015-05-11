@@ -34,7 +34,7 @@ public class WikiHasIssueFacade extends AbstractFacade<WikiHasIssue> {
     public List<WikiHasIssue> lista(int a){
       List<WikiHasIssue> lista=null;
       try{
-Query query= em.createQuery("SELECT t.tac FROM WikiHasIssue t WHERE t.wiki.idWiki=:a");
+Query query= em.createQuery("SELECT t FROM WikiHasIssue t WHERE t.wiki.idWiki=:a");
 query.setParameter("a",a);
 lista=query.getResultList();
 System.out.println("TACS: "+lista);
